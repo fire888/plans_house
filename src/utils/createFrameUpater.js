@@ -24,6 +24,8 @@ export function startFrameUpater (eventEmitter) {
     } 
 
     animate();
+
+    return {}
 }
 
 

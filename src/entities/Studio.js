@@ -1,20 +1,16 @@
-
-
 import * as THREE from 'three'
 
-export default function Studio (emitterLink) {
+
+
+
+export function createStudio (emitterLink) {
   const emitter = emitterLink
 
   let camera, scene, renderer,
   assets = null
 
 
-  emitter.subscribe('frameUpdate', function () {
-    if (!camera ) {
-      return
-    }
-    renderer.render( scene, camera )
-  })
+
 
 
   const init = () => {
@@ -57,6 +53,15 @@ export default function Studio (emitterLink) {
     })
     scene.add(assets['scene'])
   }
+
+
+
+  emitter.subscribe('frameUpdate', () => {
+    if (!camera ) {
+      return;
+    }
+    renderer.render( scene, camera )
+  })
 
 
   return {

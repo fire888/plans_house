@@ -44,7 +44,7 @@ const assetsToLoad = [
 ]
 
 
-export default function LoadManager (eventEmitter) {
+export function createLoadManager (eventEmitter) {
 
     const assets = {}
 

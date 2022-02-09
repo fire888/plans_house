@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 
-export default function Projector(cam, model) {
+export function createProjector(cam, model) {
 
     const raycaster = new THREE.Raycaster()
     const mouse = new THREE.Vector2()

@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 
-export default function Player ( eventEmitter ) {
+export function createPlayer ( eventEmitter ) {
     
   const emitter = eventEmitter
 

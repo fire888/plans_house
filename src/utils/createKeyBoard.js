@@ -1,4 +1,4 @@
-export default function keyBoard (eventEmitter) {
+export function createKeyBoard (eventEmitter) {
     
     const emitter = eventEmitter
 
@@ -32,7 +32,7 @@ export default function keyBoard (eventEmitter) {
             keys['w'] = isDown
             break
         }
-        emitter.emit('keyEvent')(keys)
+        emitter.emit('keyEvent', keys)
     }
 
     document.addEventListener( 'keydown', 
@@ -69,4 +69,7 @@ export default function keyBoard (eventEmitter) {
       function() { keyUpdate( 38, true ) })
     buttUp.addEventListener('touchend', 
       function() { keyUpdate( 38, false ) })   
+
+
+   return {}   
 }

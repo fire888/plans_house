@@ -1,113 +1,52 @@
+import { showStartButton } from './ui/hideStartScreen'
+import { createStudio } from './entities/Studio'
+import { createKeyBoard } from './utils/createKeyBoard'
+import { createEventEmitter } from './utils/createEventEmitter'
+import { createLoadManager } from './helpers/LoadManager'
+//import { createPlayer } from './entities/Player'
+import { createCamera } from './entities/Camera'
+import { startFrameUpater } from './utils/createFrameUpater'
+//import { createProjector } from './helpers/Projector'
 
-import Studio from './js/Studio'
-import KeyBoard from './js/utils/keyBoard'
-import { createEventEmitter } from './js/utils/Emitter'
-import LoadManager from './js/LoadManager'
-import Player from './js/Player'
-import { startFrameUpater } from './js/utils/FrameUpater'
-import Projector from './js/Projector'
 
-let emitter, studio, loadManager, player,  projector
+
+const root = {}
+
+
 
 /** INIT  ***********************************************************/
 
+
 const initApp = () => {
-  emitter = createEventEmitter()
-  startFrameUpater(emitter)
-  new KeyBoard(emitter)
+  root.emitter = createEventEmitter()
+  root.frameUpdater = startFrameUpater(root.emitter)
+  root.keyBoard = new createKeyBoard(root.emitter)
 
-  studio = Studio(emitter)
-  studio.initScene()
+  root.studio = createStudio(root.emitter)
+  root.studio.initScene()
 
-  player = Player( emitter )
-  player.init()
+  //const player = createPlayer(emitter)
+  //player.init()
 
-  studio.addToScene( player.getObj() )
-  studio.setCamera( player.getCamera() )
-
-  loadManager = new LoadManager( emitter )
-
-  emitter.subscribe('loadingComplete', assets => {
-    studio.createLevelFromAssets(assets)
+  //studio.addToScene( player.getObj() )
+  //studio.setCamera( player.getCamera() )
 
 
-    initButtonsCamera()
+  root.camMovies = createCamera(root)
+  root.studio.setCamera(root.camMovies.camera)
+
+  root.loadManager = new createLoadManager(root.emitter)
+
+  root.emitter.subscribe('loadingComplete', assets => {
+    root.studio.createLevelFromAssets(assets)
+
     showStartButton()
 
-    const cone = Projector(player.getCamera(), assets['scene'])
-    studio.addToScene(cone)
+    //const cone = createProjector(player.getCamera(), assets['scene'])
+    //studio.addToScene(cone)
   })
 
-  loadManager.startLoad()
-}
-
-
-
-
-// CHANGE VIEWS /////////////////////////////////////////////////////////
-
-
-const initButtonsCamera = () => {
-  let butt1 = document.querySelector('.c1')
-  butt1.addEventListener('mouseup', () => {
-    setView('PhysCamera001')
-  })
-  let butt2 = document.querySelector('.c2')
-  butt2.addEventListener('mouseup', () => {
-    setView('PhysCamera002')
-  })
-  let butt3 = document.querySelector('.c3')
-  butt3.addEventListener('mouseup', () => {
-    setView('PhysCamera003')
-  })
-  let butt4 = document.querySelector('.c4')
-  butt4.addEventListener('mouseup', () => {
-    setView('PhysCamera004')
-  })
-}
-
-
-
-
-
-
-// START UI //////////////////////////////////////////////////////////
-
-
-/** ANIMATION LOADER */
-
-const loader = document.querySelector('.progress')
-let offsetLoader = -100
-let isAnimateLoader = true
-
-const loaderTimeOut = () => {
-  if (!isAnimateLoader) {
-    return
-  }
-  setTimeout(() => {
-    offsetLoader ++;
-    if (offsetLoader == 0 ) {
-      offsetLoader = -100
-    }
-    loader.style.marginLeft = offsetLoader + '%'
-    loaderTimeOut() 
-  }, 100)
-}
-
-loaderTimeOut()
-
-const startButton = document.querySelector('.start')
-const progressWrapper = document.querySelector('.load-wrapper')
-const showStartButton = () => {
-  startButton.style.display = 'inline'
-  startButton.addEventListener('click', hideStartScreen)
-  progressWrapper.style.display = 'none'
-}
-
-const hideStartScreen = () => {
-  isAnimateLoader = false
-  let startScreen = document.querySelector('.start-screen')
-  startScreen.style.display = 'none'
+  root.loadManager.startLoad()
 }
 
 
