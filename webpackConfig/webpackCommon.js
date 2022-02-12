@@ -9,24 +9,29 @@ module.exports = {
 		rules: [
 			{ test: /\.txt$/, use: 'raw-loader' },
 			{
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'imgs/'
-          }
-        }]
-      },			
-      { test: /\.(obj|glb|FBX)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'obj/'
-          }
-        }]
-      },
+                test: /\.(png|svg|jpg|gif|ttf)$/,
+                use: [{
+                  loader: 'file-loader',
+                  options: {
+                    name: '[name].[ext]',
+                    outputPath: 'imgs/'
+                  }
+                }]
+            },
+              { test: /\.(obj|glb|FBX)$/,
+                use: [{
+                  loader: 'file-loader',
+                  options: {
+                    name: '[name].[ext]',
+                    outputPath: 'obj/'
+                  }
+                }]
+              },
+            {
+                test: /\.css$/i,
+                use: ['css-loader', 'style-loader']
+            },
+
 		]
 	},
 	plugins: [

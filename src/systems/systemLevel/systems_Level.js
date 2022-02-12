@@ -101,6 +101,18 @@ const createMaterials = () => {
             linecap: 'round', //ignored by WebGLRenderer
             linejoin:  'round' //ignored by WebGLRenderer
         }),
+        'lineMatDark': new THREE.LineBasicMaterial( {
+            color: 0x111111,
+            linewidth: 1,
+            linecap: 'round', //ignored by WebGLRenderer
+            linejoin:  'round' //ignored by WebGLRenderer
+        }),
+        'lineMatBlack': new THREE.LineBasicMaterial( {
+            color: 0x225544,
+            linewidth: 1,
+            linecap: 'round', //ignored by WebGLRenderer
+            linejoin:  'round' //ignored by WebGLRenderer
+        }),
     }
 }
 
@@ -113,6 +125,7 @@ export const createSystemLevel = (root) => {
     const items = {}
     //const arrN = []
     const labels = {}
+    const arrows = {}
 
     const createLevel = (assets) => {
 
@@ -142,9 +155,17 @@ export const createSystemLevel = (root) => {
             if (key.includes('Line')) {
                 items[key].material = materials.lineMat
             }
+            if (key.includes('land')) {
+                items[key].material = materials.lineMatBlack
+            }
 
             if (key.includes('label')) {
                 labels[key] = items[key]
+                items[key].material = materials.lineMatDark
+            }
+
+            if (key.includes('arrow')) {
+                arrows[key] = items[key]
             }
 
 
@@ -176,5 +197,8 @@ export const createSystemLevel = (root) => {
         getLabels: () => {
             return labels
         },
+        getArrows: () => {
+            return arrows
+        }
     }
 }

@@ -42,7 +42,7 @@ export function createStudio (emitterLink) {
     antialias: true
   })
   renderer.setClearColor( 0x696c6d)
-  renderer.setPixelRatio( window.devicePixelRatio )
+  renderer.setPixelRatio( window.devicePixelRatio)
   renderer.setSize( window.innerWidth, window.innerHeight )
   scene = new THREE.Scene()
   //scene.background = 0x777777
@@ -52,7 +52,7 @@ export function createStudio (emitterLink) {
   const light = new THREE.PointLight( 0xffffff, 3.5, 1000 );
   light.position.set( 0, 50, 500);
   scene.add( light );
-  scene.fog = new THREE.Fog(0x576066, 0, 1000)
+  scene.fog = new THREE.Fog(0x576066, 0, 400)
   const hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
   hemiLight.color.setHSL( 0.6, 1, 0.6 );
   hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
@@ -68,7 +68,7 @@ export function createStudio (emitterLink) {
     'exponent': { value: 0.6 }
   };
 
-  scene.fog.color.copy( uniforms[ 'bottomColor' ].value );
+ // scene.fog.color.copy( uniforms[ 'bottomColor' ].value );
 
   const skyGeo = new THREE.SphereGeometry( 4000, 32, 15 );
   const skyMat = new THREE.ShaderMaterial( {
@@ -82,12 +82,6 @@ export function createStudio (emitterLink) {
   scene.add( sky );
 
 
-  //
-  // const init = () => {
-  //
-  // }
-
-
   const resize = () => {
     const size = renderer.domElement.parentNode.getBoundingClientRect();
     renderer.setSize( size.width, size.height )
@@ -97,9 +91,6 @@ export function createStudio (emitterLink) {
     }
   }
   window.addEventListener('resize', resize)
-
-
-
 
 
 

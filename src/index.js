@@ -1,6 +1,7 @@
-import { showStartButton } from './ui/hideStartScreen'
+
+import { showStartButton, hideStartScreen } from './ui/hideStartScreen'
 import { createStudio } from './entities/Studio'
-import { createKeyBoard } from './utils/createKeyBoard'
+//import { createKeyBoard } from './utils/createKeyBoard'
 import { createEventEmitter } from './utils/createEventEmitter'
 import { createLoadManager } from './helpers/LoadManager'
 //import { createPlayer } from './entities/Player'
@@ -8,7 +9,9 @@ import { createCamera } from './entities/Camera'
 import { startFrameUpater } from './utils/createFrameUpater'
 //import { createProjector } from './helpers/Projector'
 import { ASSETS_TO_LOAD } from './constants/constants_assetsToLoad'
-import { createSystemLevel } from './sustems/systemLevel/systems_Level'
+import { createSystemLevel } from './systems/systemLevel/systems_Level'
+import { createSystemLabels } from './systems/system_Labels'
+import { createSystemArrows } from './systems/system_Arrows'
 
 
 const root = {}
@@ -21,7 +24,7 @@ const root = {}
 const initApp = () => {
   root.emitter = createEventEmitter()
   root.frameUpdater = startFrameUpater(root.emitter)
-  root.keyBoard = new createKeyBoard(root.emitter)
+  //root.keyBoard = new createKeyBoard(root.emitter)
 
   root.studio = createStudio(root.emitter)
   root.studio.initScene()
@@ -37,7 +40,14 @@ const initApp = () => {
 
     root.system_level = createSystemLevel(root)
     root.system_level.createLevel(assets)
-    showStartButton()
+
+    const labelsData = root.system_level.getLabels()
+    root.system_labels = createSystemLabels(root, labelsData, assets)
+
+    const arrowData = root.system_level.getArrows()
+    root.system_arrows = createSystemArrows(root, arrowData)
+    //showStartButton()
+    hideStartScreen()
 
     //const cone = createProjector(player.getCamera(), assets['scene'])
     //studio.addToScene(cone)

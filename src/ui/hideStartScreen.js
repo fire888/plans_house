@@ -21,7 +21,7 @@ const loaderTimeOut = () => {
 loaderTimeOut()
 
 
-const hideStartScreen = () => {
+export const hideStartScreen = () => {
     isAnimateLoader = false
     let startScreen = document.querySelector('.start-screen')
     startScreen.style.display = 'none'
