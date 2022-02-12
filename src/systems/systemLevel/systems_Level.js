@@ -91,6 +91,15 @@ const createMaterials = () => {
             transparent: true,
             opacity: 0.90,
         }),
+        'matRed': new THREE.MeshPhongMaterial({
+            color: 0xFF0000,
+            specular: 0x111111,
+            emissive: 0x000000,
+            shininess: 0,
+            transparent: true,
+            opacity: 0.90,
+            side: THREE.DoubleSide,
+        }),
         'wireframe': new THREE.MeshBasicMaterial({
             color: 0x000000,
             wireframe: true,
@@ -109,6 +118,12 @@ const createMaterials = () => {
         }),
         'lineMatBlack': new THREE.LineBasicMaterial( {
             color: 0x225544,
+            linewidth: 1,
+            linecap: 'round', //ignored by WebGLRenderer
+            linejoin:  'round' //ignored by WebGLRenderer
+        }),
+        'lineMatWhite': new THREE.LineBasicMaterial( {
+            color: 0xffffff,
             linewidth: 1,
             linecap: 'round', //ignored by WebGLRenderer
             linejoin:  'round' //ignored by WebGLRenderer
@@ -134,7 +149,6 @@ export const createSystemLevel = (root) => {
             if (child.material) {
                 items[child.name] = child
             }
-
         })
 
         for (let key in items) {
@@ -152,21 +166,34 @@ export const createSystemLevel = (root) => {
             ) {
                 items[key].material = materials.stairsAndLift
             }
+
+
+
             if (key.includes('Line')) {
                 items[key].material = materials.lineMat
             }
             if (key.includes('land')) {
                 items[key].material = materials.lineMatBlack
             }
+            if (key.includes('clowd')) {
+                items[key].material = materials.lineMatWhite
+            }
+
 
             if (key.includes('label')) {
                 labels[key] = items[key]
                 items[key].material = materials.lineMatDark
             }
 
+
             if (key.includes('arrow')) {
-                arrows[key] = items[key]
+               arrows[key] = items[key]
+               continue;
             }
+            if (key.includes('direction')) {
+                items[key].material = materials.matRed
+            }
+
 
 
             if (key.includes('item')) {

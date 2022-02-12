@@ -64,13 +64,13 @@ const prepareArrGeometryPoints = arr => {
 
 
 export const createSystemArrows = (root, data) => {
-    console.log(root)
-    console.log(data['arrow01'])
+    //console.log(root)
+    //console.log(data['arrow01'])
 
-    const arrPoints = prepareArrPoints(data['arrow01'].geometry.attributes.position.array)
-    const arrGeometryPoints = prepareArrGeometryPoints(arrPoints)
+    //const arrPoints = prepareArrPoints(data['arrow01'].geometry.attributes.position.array)
+    //const arrGeometryPoints = prepareArrGeometryPoints(arrPoints)
 
-    console.log(arrPoints)
+    //console.log(arrPoints)
 
 
 
