@@ -1,10 +1,10 @@
 import * as THREE from 'three'
-// import 'three/examples/js/loaders/OBJLoader'
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 // import 'three/examples/js/loaders/GLTFLoader'
-import 'three/examples/js/loaders/FBXLoader'
+//import 'three/examples/js/loaders/FBXLoader'
 
-const Zlib = require("three/examples/js/libs/inflate.min"); // util for FBX loader
-window.Zlib = Zlib.Zlib;
+//const Zlib = require("three/examples/js/libs/inflate.min"); // util for FBX loader
+//window.Zlib = Zlib.Zlib;
 
 
 export function createLoadManager (ASSETS_TO_LOAD, eventEmitter) {
@@ -57,10 +57,10 @@ export function createLoadManager (ASSETS_TO_LOAD, eventEmitter) {
 
 
     this.startLoad = function () {
-        //objLoader = new THREE.OBJLoader();
+        objLoader = new OBJLoader();
         //gltfLoader = new THREE.GLTFLoader();
         textureLoader = new THREE.TextureLoader();
-        fbxLoader = new THREE.FBXLoader();
+        //fbxLoader = new THREE.FBXLoader();
         loadAsset(ASSETS_TO_LOAD[index]);
     } 
 }
