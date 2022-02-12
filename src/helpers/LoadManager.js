@@ -7,7 +7,7 @@ const Zlib = require("three/examples/js/libs/inflate.min"); // util for FBX load
 window.Zlib = Zlib.Zlib;
 
 
-export function createLoadManager (eventEmitter) {
+export function createLoadManager (ASSETS_TO_LOAD, eventEmitter) {
 
     const assets = {}
 
@@ -47,8 +47,8 @@ export function createLoadManager (eventEmitter) {
 
     const checkComplete = () => {
         index ++;
-        if ( index < assetsToLoad.length ) {
-            loadAsset(assetsToLoad[index])
+        if ( index < ASSETS_TO_LOAD.length ) {
+            loadAsset(ASSETS_TO_LOAD[index])
         } else {
             console.log(assets)
             emitter.emit('loadingComplete', assets);
@@ -61,6 +61,6 @@ export function createLoadManager (eventEmitter) {
         //gltfLoader = new THREE.GLTFLoader();
         textureLoader = new THREE.TextureLoader();
         fbxLoader = new THREE.FBXLoader();
-        loadAsset(assetsToLoad[index]);
+        loadAsset(ASSETS_TO_LOAD[index]);
     } 
 }
