@@ -17,8 +17,8 @@ export const createCamera = (root) => {
     controls.update();
     controls.enablePan = true;
     controls.enableDamping = true;
-    controls.autoRotate = true
-    controls.autoRotateSpeed = 0.2
+    //controls.autoRotate = true
+    //controls.autoRotateSpeed = 0.2
 
 
     window.onresize = function () {

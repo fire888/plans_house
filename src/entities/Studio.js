@@ -46,7 +46,7 @@ export function createStudio (emitterLink) {
   renderer.setSize( window.innerWidth, window.innerHeight )
   scene = new THREE.Scene()
   //scene.background = 0x777777
-  let lightA = new THREE.AmbientLight( 0xffffff, 0.7 )
+  const lightA = new THREE.AmbientLight( 0xffffff, 0.7 )
   lightA.position.set( 5, 5, 5 )
   scene.add( lightA )
   const light = new THREE.PointLight( 0xffffff, 3.5, 1000 );
@@ -76,10 +76,10 @@ export function createStudio (emitterLink) {
     vertexShader: vertexShader,
     fragmentShader: fragmentShader,
     side: THREE.BackSide
-  } );
+  })
 
-  const sky = new THREE.Mesh( skyGeo, skyMat );
-  scene.add( sky );
+  const sky = new THREE.Mesh( skyGeo, skyMat )
+  scene.add( sky )
 
 
   const resize = () => {
@@ -117,18 +117,8 @@ export function createStudio (emitterLink) {
       return renderer
     },
 
-    // createLevelFromAssets: function (data) {
-    //   createLevel(data)
-    // },
-
     addToScene: function (mesh) {
       scene.add(mesh)
     }
   }
 }
-
-
-
-
-
-
