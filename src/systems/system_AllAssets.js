@@ -71,6 +71,15 @@ const createMaterials = () => {
             opacity: 0.90,
             side: THREE.DoubleSide,
         }),
+        'man': new THREE.MeshPhongMaterial({
+            color: 0x888800,
+            specular: 0xffffff,
+            emissive: 0x000000,
+            shininess: 30,
+        }),
+        'black': new THREE.MeshBasicMaterial({
+            color: 0x990000,
+        }),
         'wireframe': new THREE.MeshBasicMaterial({
             color: 0x000000,
             wireframe: true,
@@ -164,6 +173,12 @@ export const createSystemAllAssets = (root) => {
 
 
 
+            if (key.includes('man')) {
+                items[key].material = materials.man
+            }
+            if (key.includes('black')) {
+                items[key].material = materials.black
+            }
             if (key.includes('item')) {
                 items[key].material = materials.lab
             }

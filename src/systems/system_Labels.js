@@ -32,29 +32,32 @@ const createCanvas = (text, size, color, colorFont) => {
 
 const createSprite = (key, data) => {
 
-    const { text, size, color, colorFont = WHITE } = LABELS_DATA[key]
-    const map = new THREE.CanvasTexture(createCanvas(text, size, color, colorFont));
-
-    const material = new THREE.SpriteMaterial( { map: map } );
-
-    const sprite = new THREE.Sprite( material );
-    const pos = [
-        data.geometry.attributes.position.array[3],
-        data.geometry.attributes.position.array[4] + LABEL_OFFSET_Y,
-        data.geometry.attributes.position.array[5],
-    ]
-
-    sprite.position.fromArray(pos)
-    sprite.scale.x = size[0] / 140
-    sprite.scale.y = size[1] / 140
-    return sprite
+    if (LABELS_DATA[key]) {
+        const { text, size, color, colorFont = WHITE } = LABELS_DATA[key]
+        const map = new THREE.CanvasTexture(createCanvas(text, size, color, colorFont));
+    
+        const material = new THREE.SpriteMaterial( { map: map } );
+    
+        const sprite = new THREE.Sprite( material );
+        const pos = [
+            data.geometry.attributes.position.array[3],
+            data.geometry.attributes.position.array[4] + LABEL_OFFSET_Y,
+            data.geometry.attributes.position.array[5],
+        ]
+    
+        sprite.position.fromArray(pos)
+        sprite.scale.x = size[0] / 140
+        sprite.scale.y = size[1] / 140
+        return sprite
+    }
+    return null
 }
 
 
 export const createSystemLabels = (root, labelsData) => {
     for (let key in labelsData) {
         const sprite = createSprite(key, labelsData[key])
-        root.studio.addToScene(sprite );
+        sprite && root.studio.addToScene(sprite );
     }
 
     return {}

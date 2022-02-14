@@ -29,7 +29,7 @@ export const LABELS_DATA = {
 
 
 export const RED_GROUP = [
-    'floor01_item08',
+    'floor01_item08',  
     'floor01_item09',
     'floor01_item10',
     'floor01_item11',
