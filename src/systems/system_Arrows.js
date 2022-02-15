@@ -8,5 +8,10 @@ export const createSystemArrows = (root, data) => {
         root.studio.addToScene(mesh)
     }
 
+
+    root.emitter.subscribe('changePath', ({ currentStart, currentEnd }) => {
+        console.log( currentStart, currentEnd  )
+    })
+
     return {}
 }
