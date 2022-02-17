@@ -119,6 +119,10 @@ export function createStudio (emitterLink) {
 
     addToScene: function (mesh) {
       scene.add(mesh)
-    }
+    },
+
+    removeFromScene: mesh => {
+      scene.remove(mesh)
+    } 
   }
 }
