@@ -20,6 +20,7 @@ export const createSystemArrows = (root, data) => {
     
     const nodesData = {}
 
+    /** prepare nodes from model data and config */
     for (let key in pathPoints) {
         nodesData[key] = {
             pos: new THREE.Vector3(
@@ -52,10 +53,6 @@ export const createSystemArrows = (root, data) => {
     }
 
 
-
-
-
-
     console.log(nodesData)
 
     root.emitter.subscribe('changePath', ({ currentStart, currentEnd }) => {
@@ -67,6 +64,7 @@ export const createSystemArrows = (root, data) => {
             return;
         }
 
+        /** remove old arrow */
         if (mesh) {
             root.studio.removeFromScene(mesh)
             mesh.geometry.dispose()
@@ -75,6 +73,7 @@ export const createSystemArrows = (root, data) => {
         }
 
 
+        /** get start and end nodes by labels */
         let nodeStartKey = null
         let nodeEndKey = null
 
@@ -92,7 +91,8 @@ export const createSystemArrows = (root, data) => {
             return;
         }
 
-        const arrCoords = pretparePath(nodeStartKey, nodeEndKey, nodesData)
+        /** create new arrow */
+        const arrCoords = createMinimalPath(nodeStartKey, nodeEndKey, nodesData)
         mesh = createMesh(arrCoords)
         root.studio.addToScene(mesh)
     })
@@ -102,37 +102,42 @@ export const createSystemArrows = (root, data) => {
 
 
 
-const pretparePath = (startKey, endKey, data) => {
-    const minPath = createMinimalPath(startKey, endKey, data)
-    
-    return minPath
-}
-
 
 
 
 const createMinimalPath = (startKey, endKey, data) => {    
-    const arrSteppedKeys = [startKey]
-
-    const iterate = () => {
-        const nearestKey = getNear(arrSteppedKeys[arrSteppedKeys.length - 1], data, arrSteppedKeys, endKey)
-
-        arrSteppedKeys.push(nearestKey)
-        if (nearestKey !== endKey) {
-            iterate()
-        }
-    }
-    iterate()
- 
+    const arrSteppedKeys = preparePathKeys(startKey, endKey, data)
 
     const points = []
     for (let i = 0; i < arrSteppedKeys.length; ++i) {
         points.push(...data[arrSteppedKeys[i]].pos.toArray())
     }
 
-
     return points
 }
+
+
+
+
+
+const preparePathKeys = (startKey, endKey, data) => {
+    const arrSteppedKeys = [startKey]
+
+    const iterate = () => {
+        const currentKey = arrSteppedKeys[arrSteppedKeys.length - 1] 
+        const nearestKey = getNear(currentKey, data, arrSteppedKeys, endKey)
+        arrSteppedKeys.push(nearestKey)
+        
+        if (nearestKey !== endKey) {
+            iterate()
+        }
+    }
+    iterate()
+
+    return arrSteppedKeys;
+}
+
+
 
 
 const getNear = (keyCurrent, data, steppedKeys, endKey) => {
@@ -160,11 +165,10 @@ const getNear = (keyCurrent, data, steppedKeys, endKey) => {
             continue;
         }
 
-        const d = data[keyCurrent].pos.distanceTo(data[key].pos)
+        const d = data[keyCurrent].pos.distanceToSquared(data[key].pos)
         if (d < dist) {
             keyNearest = key
             dist = d
-
         }
     }
 
