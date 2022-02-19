@@ -8,13 +8,21 @@ const SIZE = [500, 120]
 export const LABEL_OFFSET_Y = .2
 
 
+export const CROSS_DATA = {
+    'path006': ['path007', 'path020', 'path027', 'path013'],
+    'path020': ['path005', 'path006', 'path021'],
+    'path027': ['path006', 'path028', 'path029'],
+}
+
+
 export const LABELS_DATA = {
+    'label000': { text: 'ВХОД', size: SIZE, color: BLACK, pathLabel: 'path_l000' },
     'label012': { text: 'лаб. 101', size: SIZE, color: BLUE, pathLabel: 'path_l012' },
     'label013': { text: 'лаб. 102', size: SIZE, color: BLUE, pathLabel: 'path_l013' },
     'label014': { text: 'лаб. 103', size: SIZE, color: BLUE, pathLabel: 'path_l014' },
     'label015': { text: 'лаб. 104', size: SIZE, color: BLUE, pathLabel: 'path_l015' },
     'label016': { text: 'лаб. 105', size: SIZE, color: BLUE, pathLabel: 'path_l016' },
-    'label017': { text: 'гардероб', size: SIZE, color: BLACK, pathLabel: 'path_l017'},
+    'label017': { text: 'гардероб', size: SIZE, color: BLACK, pathLabel: 'path_g'},
     'label018': { text: 'лаб. 106', size: SIZE, color: RED, pathLabel: 'path_l018' },
     'label019': { text: 'лаб. 107', size: SIZE, color: RED, pathLabel: 'path_l019' },
     'label020': { text: 'лаб. 108', size: SIZE, color: RED, pathLabel: 'path_l020' },

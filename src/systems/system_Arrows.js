@@ -1,21 +1,25 @@
 import { createMesh } from '../entities/Arrow'
 import { LABELS_DATA } from '../constants/itemsData' 
+import { CROSS_DATA } from '../constants/itemsData'
+
+
 
 
 export const createSystemArrows = (root, data) => {
 
     let mesh = null
 
-    if (data['arrow01']) {
-        const arrPoints = data['arrow01'].geometry.attributes.position.array
-        mesh = createMesh(arrPoints)
-        root.studio.addToScene(mesh)
-    }
+    // if (data['arrow01']) {
+    //     const arrPoints = data['arrow01'].geometry.attributes.position.array
+    //     mesh = createMesh(arrPoints)
+    //     root.studio.addToScene(mesh)
+    // }
 
 
     const pathPoints = root.system_assets.getPathPoints()
     
     const nodesData = {}
+
     for (let key in pathPoints) {
         nodesData[key] = {
             pos: new THREE.Vector3(
@@ -24,6 +28,15 @@ export const createSystemArrows = (root, data) => {
                 pathPoints[key].geometry.attributes.position.array[2],
             ),
             keyNode: key,
+            crossData: null,
+            label: null,
+        }
+
+
+        for (let keyCross in CROSS_DATA) {
+            if (keyCross === key) {
+                nodesData[key].crossData = CROSS_DATA[keyCross]
+            }
         }
 
 
@@ -47,6 +60,10 @@ export const createSystemArrows = (root, data) => {
 
     root.emitter.subscribe('changePath', ({ currentStart, currentEnd }) => {
         if (!currentStart || !currentEnd) {
+            return;
+        }
+
+        if (currentStart === currentEnd) {
             return;
         }
 
@@ -95,22 +112,30 @@ const pretparePath = (startKey, endKey, data) => {
 
 
 const createMinimalPath = (startKey, endKey, data) => {    
-    const arr = []
-    arr.push(...data[startKey].pos.toArray())
+    const arrSteppedKeys = [startKey]
 
+    const iterate = () => {
+        const nearestKey = getNear(arrSteppedKeys[arrSteppedKeys.length - 1], data, arrSteppedKeys, endKey)
 
-    const iterate = (key) => {
-        const nearestKey = getNear(key, data)
-        arr.push(...data[nearestKey].pos.toArray())
+        arrSteppedKeys.push(nearestKey)
+        if (nearestKey !== endKey) {
+            iterate()
+        }
     }
-    iterate(startKey)
+    iterate()
  
-    arr.push(...data[endKey].pos.toArray())
-    return arr
+
+    const points = []
+    for (let i = 0; i < arrSteppedKeys.length; ++i) {
+        points.push(...data[arrSteppedKeys[i]].pos.toArray())
+    }
+
+
+    return points
 }
 
 
-const getNear = (keyCurrent, data) => {
+const getNear = (keyCurrent, data, steppedKeys, endKey) => {
     let dist = 100000
     let keyNearest = null
     
@@ -119,10 +144,27 @@ const getNear = (keyCurrent, data) => {
             continue;
         }
 
+        /** continue if already key exists in path */
+        let isContinue = false
+        for (let i = 0; i < steppedKeys.length; ++i) {
+            if (steppedKeys[i] === key) {
+                isContinue = true
+            }
+        }
+        if (isContinue) {
+            continue;
+        }
+
+        /** continue if key exist label and not as endKey */
+        if (data[key].label !== null && data[key].label !== data[endKey].label) {
+            continue;
+        }
+
         const d = data[keyCurrent].pos.distanceTo(data[key].pos)
         if (d < dist) {
             keyNearest = key
             dist = d
+
         }
     }
 

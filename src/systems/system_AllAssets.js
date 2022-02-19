@@ -176,6 +176,7 @@ export const createSystemAllAssets = (root) => {
             }
             if (key.includes('direction')) {
                 items[key].material = materials.matRed
+                continue;
             }
 
 

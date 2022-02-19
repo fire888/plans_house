@@ -27,7 +27,6 @@ const prepareArrGeometryPoints = arr => {
             v1.y = arr[i][2] - arr[i-1][2]
             
             const angle = -v1.angle()
-            console.log('angle', i, angle)
 
             /** create poligons to previous points */
             arrGeom.push(

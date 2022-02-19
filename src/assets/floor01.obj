@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 16.02.2022 00:45:01
+# File Created: 19.02.2022 23:57:16
 
 #
 # object floor01_item00
@@ -7041,14 +7041,14 @@ g path018
 l 1837 1838
 
 #
-# shape path019
+# shape path_l000
 #
 
 v  0.1542 1.2486 3.8766
 v  0.3100 1.6124 3.8766
 # 2 vertices
 
-g path019
+g path_l000
 l 1839 1840
 
 #
@@ -7270,4 +7270,37 @@ v  14.6266 1.1017 -44.2557
 
 g path_l027
 l 1879 1880
+
+#
+# shape path036
+#
+
+v  0.1542 1.2486 2.3476
+v  0.3100 1.6124 2.3476
+# 2 vertices
+
+g path036
+l 1881 1882
+
+#
+# shape path_g
+#
+
+v  -4.1901 1.2486 -6.7642
+v  -4.0343 1.6124 -6.7642
+# 2 vertices
+
+g path_g
+l 1883 1884
+
+#
+# shape label000
+#
+
+v  0.0568 0.4850 3.9284
+v  1.5659 5.7001 3.9284
+# 2 vertices
+
+g label000
+l 1885 1886
 
