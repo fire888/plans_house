@@ -1,7 +1,9 @@
 import { createMesh } from '../entities/Arrow'
 import { LABELS_DATA } from '../constants/itemsData' 
 import { CROSS_DATA } from '../constants/itemsData'
+const Graph = require('node-dijkstra')
 
+console.log(Graph)
 
 
 
@@ -16,9 +18,63 @@ export const createSystemArrows = (root, data) => {
     // }
 
 
+
     const pathPoints = root.system_assets.getPathPoints()
-    
+
     const nodesData = {}
+    for (let key in pathPoints) {
+        nodesData[key] = {
+            pos: new THREE.Vector3(
+                pathPoints[key].geometry.attributes.position.array[0],
+                pathPoints[key].geometry.attributes.position.array[1],
+                pathPoints[key].geometry.attributes.position.array[2],
+            ),
+            keyNode: key,
+            crossData: null,
+            label: null,
+        }
+
+
+        //for (let keyCross in CROSS_DATA) {
+        //    if (keyCross === key) {
+        //        nodesData[key].crossData = CROSS_DATA[keyCross]
+        //    }
+        //}
+
+
+        for (let keyLabel in LABELS_DATA) {
+            const k = LABELS_DATA[keyLabel].pathLabel
+            
+            if (k !== key) {
+                continue;
+            } 
+            
+            nodesData[key].label = keyLabel 
+        }
+    }
+
+
+    // const route = new Graph()
+    // for (let keyGraph in CROSS_DATA) {
+        
+    // } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    console.log('!!!',CROSS_DATA)
 
     /** prepare nodes from model data and config */
     for (let key in pathPoints) {
@@ -34,11 +90,11 @@ export const createSystemArrows = (root, data) => {
         }
 
 
-        for (let keyCross in CROSS_DATA) {
-            if (keyCross === key) {
-                nodesData[key].crossData = CROSS_DATA[keyCross]
-            }
-        }
+        //for (let keyCross in CROSS_DATA) {
+        //    if (keyCross === key) {
+        //        nodesData[key].crossData = CROSS_DATA[keyCross]
+        //    }
+        //}
 
 
         for (let keyLabel in LABELS_DATA) {
@@ -93,6 +149,7 @@ export const createSystemArrows = (root, data) => {
 
         /** create new arrow */
         const arrCoords = createMinimalPath(nodeStartKey, nodeEndKey, nodesData)
+        console.log(arrCoords)
         mesh = createMesh(arrCoords)
         root.studio.addToScene(mesh)
     })
@@ -117,26 +174,65 @@ const createMinimalPath = (startKey, endKey, data) => {
 }
 
 
-
-
+/*********************************************************************** */
 
 const preparePathKeys = (startKey, endKey, data) => {
-    const arrSteppedKeys = [startKey]
+    const arrPathesToCross = []
 
-    const iterate = () => {
-        const currentKey = arrSteppedKeys[arrSteppedKeys.length - 1] 
-        const nearestKey = getNear(currentKey, data, arrSteppedKeys, endKey)
-        arrSteppedKeys.push(nearestKey)
+    const startPath = createPathToCross(startKey, endKey, data)
+    arrPathesToCross.push(startPath)
+
+    const nextStep = () => {
+        let isNextStep = true
         
-        if (nearestKey !== endKey) {
-            iterate()
-        }
-    }
-    iterate()
+        for (let i = 0; i < arrPathesToCross.length; ++i) {
+            const path = arrPathesToCross[i]
 
-    return arrSteppedKeys;
+            if (!path) {
+                continue;
+            }
+
+            const pathKey = path.step()
+
+            if (data[pathKey].crossData) {
+                
+            }
+
+
+            if (pathKey === endKey) {
+                isNextStep = false
+            }
+        }
+
+        if (isNextStep) {
+            nextStep()
+        }
+    } 
+    nextStep()
+
+
+    return arrPathesToCross[0].getPath()
 }
 
+
+
+
+const createPathToCross = (startKey, endKey, data) => {
+    const arrSteppedKeys = [startKey]
+
+
+    return { 
+        step () {
+            const currentKey = arrSteppedKeys[arrSteppedKeys.length - 1] 
+            const nearestKey = getNear(currentKey, data, arrSteppedKeys, endKey)
+            arrSteppedKeys.push(nearestKey)
+            return nearestKey;
+        }, 
+        getPath () { 
+            return arrSteppedKeys;
+        },
+    }
+}
 
 
 
@@ -174,3 +270,33 @@ const getNear = (keyCurrent, data, steppedKeys, endKey) => {
 
     return keyNearest
 }
+
+
+
+
+
+/*********************************************** */
+
+// const preparePathKeys = (startKey, endKey, data) => {
+//     const arrSteppedKeys = [startKey]
+
+//     const iterate = () => {
+//         const currentKey = arrSteppedKeys[arrSteppedKeys.length - 1] 
+//         const nearestKey = getNear(currentKey, data, arrSteppedKeys, endKey)
+//         arrSteppedKeys.push(nearestKey)
+
+        
+//         if (data[currentKey].crossData) {
+//             console.log(data[currentKey].crossData)
+//         }
+
+
+//         if (nearestKey !== endKey) {
+//             iterate()
+//         }
+//     }
+//     iterate()
+
+//     return arrSteppedKeys;
+// }
+

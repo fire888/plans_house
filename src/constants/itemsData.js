@@ -9,9 +9,68 @@ export const LABEL_OFFSET_Y = .2
 
 
 export const CROSS_DATA = {
+    /** left right */
+    'path01': ['path002', 'path_l012'],
+    'path002': ['path_l013', 'path01', 'path003'],
+    'path003': ['path002', 'path_l014', 'path004'],
+    'path004': ['path003', 'path_l015', 'path005'],
+    'path005': ['path003', 'path_l016', 'path020'],
+    'path020': ['path005', 'path021', 'path006'],
     'path006': ['path007', 'path020', 'path027', 'path013'],
-    'path020': ['path005', 'path006', 'path021'],
+    'path007': ['path006', 'path_l018', 'path008',],
+    'path008': ['path007', 'path_l019', 'path009',],
+    'path009': ['path008', 'path_l020', 'path010',],
+    'path010': ['path009', 'path_l021', 'path011',],
+    'path011': ['path010', 'path_l022', 'path012',],
+    'path012': ['path011', 'path_l023',],
+
+    'path_l012': ['path01'],
+    'path_l013': ['path002'],
+    'path_l014': ['path003'],
+    'path_l015': ['path004'],
+    'path_l016': ['path005'],
+    'path_l018': ['path007'],
+    'path_l019': ['path008'],
+    'path_l020': ['path009'],
+    'path_l021': ['path010'],
+    'path_l022': ['path011'],
+    'path_l023': ['path012'],
+
+    /** enter */
+    'path013': ['path006', 'path014',],
+    'path014': ['path013', 'path015',],
+    'path015': ['path014', 'path016',],
+    'path016': ['path015', 'path017', 'path_g'],
+    'path017': ['path016', 'path018'],
+    'path018': ['path017', 'path036'],
+    'path036': ['path018', 'path_l000'],
+
+    'path_g': ['path016'],
+
+    /** stair */
+    'path021' : ['path010', 'path022'],
+    'path022' : ['path021', 'path023'],
+    'path023' : ['path022', 'path024'],
+    'path024' : ['path023', 'path025'],
+    'path025' : ['path024', 'path026'],
+    'path026' : ['path025', 'path_l024'],
+
+    'path_l024': ['path026'],
+
+    /** back */
     'path027': ['path006', 'path028', 'path029'],
+    'path028': ['path027', 'path_l025'],
+    'path029': ['path027', 'path030'],
+    'path030': ['path029', 'path_l026', 'path031'],
+    'path031': ['path030', 'path032'],
+    'path032': ['path031', 'path033'],
+    'path033': ['path032', 'path034'],
+    'path034': ['path033', 'path035'],
+    'path035': ['path034', 'path_l027'],
+
+    'path_l025': ['path028'],
+    'path_l026': ['path030'],
+    'path_l027': ['path035'],
 }
 
 
