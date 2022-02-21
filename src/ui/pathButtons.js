@@ -20,10 +20,12 @@ export const createButtons = (root) => {
 
     const startCont = document.createElement('div')
     startCont.classList.add('cont-column')
+    startCont.innerHTML = `<div>старт</div>`
     container.appendChild(startCont)
 
     const endCont = document.createElement('div')
     endCont.classList.add('cont-column')
+    endCont.innerHTML = `<div>финиш</div>`
     container.appendChild(endCont)
 
 

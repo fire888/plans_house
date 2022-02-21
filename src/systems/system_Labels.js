@@ -55,10 +55,44 @@ const createSprite = (key, data) => {
 
 
 export const createSystemLabels = (root, labelsData) => {
+    
+    const sprites = {}
+
+    let oldSpStart = null
+    let oldSpEnd = null
+
     for (let key in labelsData) {
         const sprite = createSprite(key, labelsData[key])
-        sprite && root.studio.addToScene(sprite );
+        sprite && root.studio.addToScene(sprite)
+        sprites[key] = { s: sprite, scale: [sprite.scale.x, sprite.scale.y] }
     }
+
+    root.emitter.subscribe('changePath', ({ currentStart, currentEnd }) => {
+        if (currentStart) {
+            if (oldSpStart) {
+                const { s, scale } = sprites[oldSpStart] 
+                s.scale.x = scale[0]
+                s.scale.y = scale[1]
+            }
+
+            const { s, scale } = sprites[currentStart]
+            s.scale.x = scale[0] * 1.3
+            s.scale.y = scale[1] * 1.3
+            oldSpStart = currentStart
+        }
+        if (currentEnd) {
+            if (oldSpEnd) {
+                const { s, scale } = sprites[oldSpEnd] 
+                s.scale.x = scale[0]
+                s.scale.y = scale[1]
+            }
+
+            const { s, scale } = sprites[currentEnd]
+            s.scale.x = scale[0] * 1.3
+            s.scale.y = scale[1] * 1.3
+            oldSpEnd = currentEnd
+        }
+    })
 
     return {}
 }

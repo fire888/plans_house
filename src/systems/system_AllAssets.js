@@ -135,6 +135,7 @@ export const createSystemAllAssets = (root) => {
         for (let key in items) {
             if (key.includes('path')) {
                 pathPoints[key] = items[key]
+                continue;
             }
 
 

@@ -14,7 +14,7 @@ export const CROSS_DATA = {
     'path002': ['path_l013', 'path01', 'path003'],
     'path003': ['path002', 'path_l014', 'path004'],
     'path004': ['path003', 'path_l015', 'path005'],
-    'path005': ['path003', 'path_l016', 'path020'],
+    'path005': ['path004', 'path_l016', 'path020'],
     'path020': ['path005', 'path021', 'path006'],
     'path006': ['path007', 'path020', 'path027', 'path013'],
     'path007': ['path006', 'path_l018', 'path008',],
@@ -46,9 +46,10 @@ export const CROSS_DATA = {
     'path036': ['path018', 'path_l000'],
 
     'path_g': ['path016'],
+    'path_l000': ['path036'],
 
     /** stair */
-    'path021' : ['path010', 'path022'],
+    'path021' : ['path020', 'path022'],
     'path022' : ['path021', 'path023'],
     'path023' : ['path022', 'path024'],
     'path024' : ['path023', 'path025'],
