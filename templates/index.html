@@ -104,7 +104,12 @@
       background-color: red;
       color: white;
     }
-
+    .map-mapbox {
+      position: absolute;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+    }
   </style>
 </head>
 <body>
@@ -127,5 +132,6 @@
   <div class="canvas-wrapper">
     <canvas id='webgl-canvas'></canvas>
   </div>
+  <div class="map-mapbox"></div>
 </body>
 </html>

@@ -3,7 +3,6 @@ import { LABELS_DATA } from '../constants/itemsData'
 import { CROSS_DATA } from '../constants/itemsData'
 const Graph = require('node-dijkstra')
 
-console.log(Graph)
 
 
 

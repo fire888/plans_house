@@ -13,6 +13,7 @@ import { createSystemAllAssets } from './systems/system_AllAssets'
 import { createSystemLabels } from './systems/system_Labels'
 import { createSystemArrows } from './systems/system_Arrows'
 import { createButtons } from './ui/pathButtons'
+import { createMapBox } from './systems/system_MapBox'
 
 
 const root = {}
@@ -44,6 +45,8 @@ const initApp = () => {
 
     const arrowData = root.system_assets.getArrows()
     root.system_arrows = createSystemArrows(root, arrowData)
+    root.system_mapbox = createMapBox(root)
+
     hideStartScreen()
 
     const buttons = createButtons(root)
