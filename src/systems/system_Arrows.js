@@ -98,9 +98,9 @@ export const createSystemArrows = (root, data) => {
         const keysPath = route.path(nodeStartKey, nodeEndKey)
         const coords = getCoords(keysPath, nodesData)
         mesh = createMesh(coords)
-        mesh.renderOrder = 999
+        //mesh.renderOrder = 999
         //mesh.renderOrder = zindex || 999;
-        mesh.material.depthTest = false;
+       // mesh.material.depthTest = false;
         //mesh.material.depthWrite = false;
         //mesh.onBeforeRender = function (renderer) { renderer.clearDepth(); };
         root.studio.addToScene(mesh)
