@@ -1,35 +1,6 @@
 import * as THREE from "three";
+import { RED_GROUP, BLUE_GROUP, GREEN_GROUP } from '../constants/itemsData'
 
-
-const redMat = [
-    'floor01_item08',
-    'floor01_item09',
-    'floor01_item10',
-    'floor01_item11',
-    'floor01_item12',
-    'floor01_item13',
-]
-const blueMat = [
-    'floor01_item103',
-    'floor01_item03',
-    'floor01_item07',
-    'floor01_item06',
-    'floor01_item05',
-]
-const greenMat = [
-    'floor01_item15',
-    'floor01_item16',
-    'floor01_item17',
-    'floor01_item18',
-    'floor01_item19',
-    'floor01_item20',
-    'floor01_item21',
-    'floor01_item22',
-    'floor01_item23',
-    'floor01_item24',
-    'floor01_item25',
-    'floor01_item26',
-]
 
 
 const createMaterials = () => {
@@ -91,6 +62,24 @@ const createMaterials = () => {
             transparent: true,
             opacity: 0.90,
         }),
+        'matRed': new THREE.MeshPhongMaterial({
+            color: 0xFF0000,
+            specular: 0x111111,
+            emissive: 0x000000,
+            shininess: 0,
+            transparent: true,
+            opacity: 0.90,
+            side: THREE.DoubleSide,
+        }),
+        'man': new THREE.MeshPhongMaterial({
+            color: 0x888800,
+            specular: 0xffffff,
+            emissive: 0x000000,
+            shininess: 30,
+        }),
+        'black': new THREE.MeshBasicMaterial({
+            color: 0x990000,
+        }),
         'wireframe': new THREE.MeshBasicMaterial({
             color: 0x000000,
             wireframe: true,
@@ -113,17 +102,22 @@ const createMaterials = () => {
             linecap: 'round', //ignored by WebGLRenderer
             linejoin:  'round' //ignored by WebGLRenderer
         }),
+        'lineMatWhite': new THREE.LineBasicMaterial( {
+            color: 0xffffff,
+            linewidth: 1,
+            linecap: 'round', //ignored by WebGLRenderer
+            linejoin:  'round' //ignored by WebGLRenderer
+        }),
     }
 }
 
 
 
 
-export const createSystemLevel = (root) => {
+export const createSystemAllAssets = (root) => {
     const { studio } = root
     const materials = createMaterials()
     const items = {}
-    //const arrN = []
     const labels = {}
     const arrows = {}
 
@@ -134,12 +128,9 @@ export const createSystemLevel = (root) => {
             if (child.material) {
                 items[child.name] = child
             }
-
         })
 
         for (let key in items) {
-            //arrN.push(key)
-
             if (key.includes('floor')) {
                 items[key].material = materials.floor
             }
@@ -152,38 +143,57 @@ export const createSystemLevel = (root) => {
             ) {
                 items[key].material = materials.stairsAndLift
             }
+
+
+
             if (key.includes('Line')) {
                 items[key].material = materials.lineMat
             }
             if (key.includes('land')) {
                 items[key].material = materials.lineMatBlack
             }
+            if (key.includes('clowd')) {
+                items[key].material = materials.lineMatWhite
+            }
+
 
             if (key.includes('label')) {
                 labels[key] = items[key]
                 items[key].material = materials.lineMatDark
             }
 
+
             if (key.includes('arrow')) {
-                arrows[key] = items[key]
+               arrows[key] = items[key]
+               continue;
+            }
+            if (key.includes('direction')) {
+                items[key].material = materials.matRed
             }
 
 
+
+            if (key.includes('man')) {
+                items[key].material = materials.man
+            }
+            if (key.includes('black')) {
+                items[key].material = materials.black
+            }
             if (key.includes('item')) {
                 items[key].material = materials.lab
             }
-            for (let i = 0; i < redMat.length; ++i) {
-                if (redMat[i] === key) {
+            for (let i = 0; i < RED_GROUP.length; ++i) {
+                if (RED_GROUP[i] === key) {
                     items[key].material = materials.labRed
                 }
             }
-            for (let i = 0; i < blueMat.length; ++i) {
-                if (blueMat[i] === key) {
+            for (let i = 0; i < BLUE_GROUP.length; ++i) {
+                if (BLUE_GROUP[i] === key) {
                     items[key].material = materials.labBlue
                 }
             }
-            for (let i = 0; i < greenMat.length; ++i) {
-                if (greenMat[i] === key) {
+            for (let i = 0; i < GREEN_GROUP.length; ++i) {
+                if (GREEN_GROUP[i] === key) {
                     items[key].material = materials.labGreen
                 }
             }
