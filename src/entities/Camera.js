@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-//import { OrbitControls }  from 'three/examples/jsm/controls/OrbitControls'
-import { MapControls }  from 'three/examples/jsm/controls/MapControls'
+import { MapControls }  from 'three/examples/jsm/controls/OrbitControls'
+//import { MapControls }  from 'three/examples/jsm/controls/MapControls'
 
 export const createCamera = (root) => {
     const { studio, emitter } = root
