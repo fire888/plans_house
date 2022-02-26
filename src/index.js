@@ -12,6 +12,7 @@ import { ASSETS_TO_LOAD } from './constants/constants_assetsToLoad'
 import { createSystemAllAssets } from './systems/system_AllAssets'
 import { createSystemLabels } from './systems/system_Labels'
 import { createSystemArrows } from './systems/system_Arrows'
+import { createButtons } from './ui/pathButtons'
 
 
 const root = {}
@@ -45,6 +46,7 @@ const initApp = () => {
     root.system_arrows = createSystemArrows(root, arrowData)
     hideStartScreen()
 
+    const buttons = createButtons(root)
     //const cone = createProjector(player.getCamera(), assets['scene'])
     //studio.addToScene(cone)
   })

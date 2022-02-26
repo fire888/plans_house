@@ -120,6 +120,8 @@ export const createSystemAllAssets = (root) => {
     const items = {}
     const labels = {}
     const arrows = {}
+    const pathPoints = {}
+
 
     const createLevel = (assets) => {
 
@@ -131,6 +133,12 @@ export const createSystemAllAssets = (root) => {
         })
 
         for (let key in items) {
+            if (key.includes('path')) {
+                pathPoints[key] = items[key]
+                continue;
+            }
+
+
             if (key.includes('floor')) {
                 items[key].material = materials.floor
             }
@@ -169,6 +177,7 @@ export const createSystemAllAssets = (root) => {
             }
             if (key.includes('direction')) {
                 items[key].material = materials.matRed
+                continue;
             }
 
 
@@ -209,6 +218,9 @@ export const createSystemAllAssets = (root) => {
         },
         getArrows: () => {
             return arrows
-        }
+        },
+        getPathPoints: () => {
+            return pathPoints
+        },
     }
 }

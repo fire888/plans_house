@@ -27,7 +27,6 @@ const prepareArrGeometryPoints = arr => {
             v1.y = arr[i][2] - arr[i-1][2]
             
             const angle = -v1.angle()
-            console.log('angle', i, angle)
 
             /** create poligons to previous points */
             arrGeom.push(
@@ -140,11 +139,15 @@ export const createMesh = pointsArr => {
     const arrPoints = prepareArrPoints(pointsArr)
     const arrGeometryPoints = prepareArrGeometryPoints(arrPoints)
 
-    const g = new THREE.BufferGeometry()
-    g.addAttribute( 'position', new THREE.BufferAttribute( new Float32Array(arrGeometryPoints), 3))
+    const geom = new THREE.BufferGeometry()
+    geom.addAttribute( 'position', new THREE.BufferAttribute( new Float32Array(arrGeometryPoints), 3))
     const mesh = new THREE.Mesh(
-        g,
-        new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide, wireframe: false })
+        geom,
+        new THREE.MeshBasicMaterial({ 
+            color: 0xFF0000, 
+            side: THREE.DoubleSide,
+            wireframe: false 
+        })
     )
     return mesh
 }
