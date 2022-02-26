@@ -29,13 +29,18 @@ module.exports = {
               },
             {
                 test: /\.css$/i,
-                use: ['css-loader', 'style-loader']
+                use: [
+                    { loader: "style-loader", options: { injectType: "styleTag" } },
+                    'css-loader'
+                ]
             },
 
 		]
 	},
 	plugins: [
-		new HtmlWebpackPlugin({template: './templates/index.html'}),
+		new HtmlWebpackPlugin({
+            template: './templates/index.html'
+		}),
 		new webpack.ProvidePlugin({
 			THREE: 'three'
 		})

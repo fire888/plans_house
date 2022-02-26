@@ -65,9 +65,9 @@
       cursor: pointer;
     }
     .canvas-wrapper {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
+      /*width: 100vw;*/
+      /*height: 100vh;*/
+      /*overflow: hidden;*/
     }
     .app-title {
       position: absolute;
@@ -104,11 +104,13 @@
       background-color: red;
       color: white;
     }
-    .map-mapbox {
+    #mapbox-wrapper {
       position: absolute;
       z-index: 9999;
       top: 0;
       left: 0;
+      width: 30vw;
+      height: 30vh;
     }
   </style>
 </head>
@@ -132,6 +134,6 @@
   <div class="canvas-wrapper">
     <canvas id='webgl-canvas'></canvas>
   </div>
-  <div class="map-mapbox"></div>
+  <div id="mapbox-wrapper"></div>
 </body>
 </html>
