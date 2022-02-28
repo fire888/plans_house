@@ -50,6 +50,14 @@ export const createCamera = (root) => {
         controls.update();
     })
 
+
+    emitter.subscribe('changeModelCamToCoord', (modelCoolds) => {
+        camera.position.set(modelCoolds[0], 50, modelCoolds[1])
+        controls.target.set(modelCoolds[0] + 10, 0, modelCoolds[1] - 41)
+        //camera.lookAt(new THREE.Vector3())
+        controls.update()
+    }) 
+
     return {
         camera,
     } 
