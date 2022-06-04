@@ -54,58 +54,55 @@ export const createSystemArrows = (root, data) => {
         route.addNode(keyGraph, cross)
     } 
 
-
-
-
-    root.emitter.subscribe('changePath', ({ currentStart, currentEnd }) => {
-        if (!currentStart || !currentEnd) {
-            return;
-        }
-
-        if (currentStart === currentEnd) {
-            return;
-        }
-
-        /** remove old arrow */
-        if (mesh) {
-            root.studio.removeFromScene(mesh)
-            mesh.geometry.dispose()
-            mesh.material.dispose()
-            mesh = null
-        }
-
-
-        /** get start and end nodes by labels */
-        let nodeStartKey = null
-        let nodeEndKey = null
-
-        for (let key in nodesData) {
-            if (nodesData[key].label === currentStart) {
-                nodeStartKey = key
+    return {
+        drawPath: ({ currentStart, currentEnd }) => {
+            if (!currentStart || !currentEnd) {
+                return;
             }
-            if (nodesData[key].label === currentEnd) {
-                nodeEndKey = key
+    
+            if (currentStart === currentEnd) {
+                return;
             }
+    
+            /** remove old arrow */
+            if (mesh) {
+                root.studio.removeFromScene(mesh)
+                mesh.geometry.dispose()
+                mesh.material.dispose()
+                mesh = null
+            }
+    
+    
+            /** get start and end nodes by labels */
+            let nodeStartKey = null
+            let nodeEndKey = null
+    
+            for (let key in nodesData) {
+                if (nodesData[key].label === currentStart) {
+                    nodeStartKey = key
+                }
+                if (nodesData[key].label === currentEnd) {
+                    nodeEndKey = key
+                }
+            }
+    
+    
+            if (!nodeStartKey || !nodeEndKey) {
+                return;
+            }
+    
+            /** create new arrow */
+            const keysPath = route.path(nodeStartKey, nodeEndKey)
+            const coords = getCoords(keysPath, nodesData)
+            mesh = createMesh(coords)
+            //mesh.renderOrder = 999
+            //mesh.renderOrder = zindex || 999;
+           // mesh.material.depthTest = false;
+            //mesh.material.depthWrite = false;
+            //mesh.onBeforeRender = function (renderer) { renderer.clearDepth(); };
+            root.studio.addToScene(mesh)
         }
-
-
-        if (!nodeStartKey || !nodeEndKey) {
-            return;
-        }
-
-        /** create new arrow */
-        const keysPath = route.path(nodeStartKey, nodeEndKey)
-        const coords = getCoords(keysPath, nodesData)
-        mesh = createMesh(coords)
-        //mesh.renderOrder = 999
-        //mesh.renderOrder = zindex || 999;
-       // mesh.material.depthTest = false;
-        //mesh.material.depthWrite = false;
-        //mesh.onBeforeRender = function (renderer) { renderer.clearDepth(); };
-        root.studio.addToScene(mesh)
-    })
-
-    return {}
+    }
 }
 
 

@@ -121,6 +121,11 @@ export const createSystemAllAssets = (root) => {
     const labels = {}
     const arrows = {}
     const pathPoints = {}
+    const floorsGroups = {
+        'floor01': [],
+        'floor02': [],
+        'floor03': [],
+    }
 
 
     const createLevel = (assets) => {
@@ -133,6 +138,12 @@ export const createSystemAllAssets = (root) => {
         })
 
         for (let key in items) {
+            for (let keyFloor in floorsGroups) {
+                if (key.includes(keyFloor)) {
+                    floorsGroups[keyFloor].push(items[key])
+                }
+            }
+
             if (key.includes('path')) {
                 pathPoints[key] = items[key]
                 continue;
@@ -209,6 +220,7 @@ export const createSystemAllAssets = (root) => {
 
             studio.addToScene(items[key])
         }
+        console.log(floorsGroups)
     }
 
     return {
@@ -222,5 +234,10 @@ export const createSystemAllAssets = (root) => {
         getPathPoints: () => {
             return pathPoints
         },
+        toggleVisibleFloor: (keyFloor, is) => {
+            for (let i = 0; i < floorsGroups[keyFloor].length; ++i) {
+                floorsGroups[keyFloor][i].visible = is
+            }
+        }
     }
 }

@@ -50,7 +50,8 @@ export const createButtons = (root) => {
             currentEnd = keyLabel
         }
 
-        emitter.emit('changePath', { currentStart, currentEnd })
+        root.actions.changePath({ currentStart, currentEnd })
+        //emitter.emit('changePath', { currentStart, currentEnd })
     }
 
 

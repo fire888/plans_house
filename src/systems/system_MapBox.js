@@ -1,5 +1,7 @@
 //import '../stylesheet/mapboxStyle.css';
 //import '../stylesheet/style.css';
+
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
 import { coordsWorldToModel } from '../helpers/transformCoords'

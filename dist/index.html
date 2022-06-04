@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<<<<<<< HEAD
-  <title>Garden</title>
-=======
-  <title>Схема</title>
->>>>>>> 8da6edc8780e6721d9abeda6f6dd4533d2681a10
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name='viewport' content='width=device-width, user-scalable=no'>
-  <style>
-    * {
+<!doctype html><html><head><title>Схема</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width,user-scalable=no"><style>* {
       margin: 0;
       padding: 0;
     }
@@ -21,26 +10,6 @@
       /*font-family: Geneva, Arial, Helvetica, sans-serif;*/
       font-family: 'Roboto Mono' monospace;
     }
-<<<<<<< HEAD
-    .name {
-      text-align: center;
-    }
-    h1 {
-      font-size: 10vh;
-      line-height: 8vh;
-    }
-    h2 {
-      font-size: 2.5vh;
-      line-height: 3.5vh;
-    }
-    h1, h2 {
-      color: #1e2c19;
-    }
-    a {
-      color: #8980bc;
-    }
-=======
->>>>>>> 8da6edc8780e6721d9abeda6f6dd4533d2681a10
     .start-screen {
       color: #c6c9a7;;
       position: absolute;
@@ -54,35 +23,6 @@
       align-content: center;
       align-items: center;
     }
-<<<<<<< HEAD
-    .message {
-      max-width: 500px;
-      margin: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center
-    }
-    .img-wrapper {
-      margin: 3vh 0 3vh 0;
-      background-color: #1e2c19;
-      padding: 3vh;
-      flex: 0 1 auto;
-    }
-    .message img {
-      border: 3px solid #000;
-      border-radius: 3px;
-      height: 20vh;
-      width: auto;
-    }
-    .instructions {
-      text-align: center;
-    }
-    .instructions p {
-      margin-top: 1vh;
-      font-size: 16px;
-    }
-=======
->>>>>>> 8da6edc8780e6721d9abeda6f6dd4533d2681a10
     .load-container {
       margin-top: 5vh; 
       min-width: 100%;
@@ -117,168 +57,11 @@
       color: #c6c9a7;
       cursor: pointer;
     }
-<<<<<<< HEAD
-
-    .ui,
-    .ui-two {
-      position: fixed;
-      z-index: 10;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-    .ui-two {
-      bottom: 70px;
-      justify-content: center;   
-    }
-    .ui button,
-    .ui-two button {
-      margin: 5px;
-      display: block;
-      width: 20vw;
-      max-width: 100px;
-      min-height: 50px;
-      user-select: none;
-      letter-spacing: 3px;
-      background: #4d4c63;
-      color: #a1a1b0;
-      border: 1px solid #a1a1b0;
-      font-size: 25px;
-      line-height: 15px;
-      border-radius: 25px;
-      transition: 0.2s;
-      text-align: center;
-      overflow: hidden;
-    }
-    .ui button:hover,
-    .ui-two button:hover  {
-      background: #1e2c19;
-      color: #a1a1b0;
-      cursor: pointer;
-    }
-    .ui-two button {
-      margin: 0 auto;
-      max-width: 300px;
-      min-width: 250px;
-      font-size: 20px;
-      line-height: 22px;
-      color: #ffffff;
-      border: 1px solid #ffffff;
-      background-color: #8a0d2c;
-    }
-    .ui-two button:hover {
-      background-color: #eb0d46;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-    }
-    .ui-two button.down {
-      color: #464655;
-      border: 1px solid #33323d;
-      background-color: #2c2325;
-    }
-    .left-container,
-    .right-container {
-      display: flex;
-      flex-direction: row;
-    }
-
-=======
->>>>>>> 8da6edc8780e6721d9abeda6f6dd4533d2681a10
     .canvas-wrapper {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
+      /*width: 100vw;*/
+      /*height: 100vh;*/
+      /*overflow: hidden;*/
     }
-<<<<<<< HEAD
-    .end-message {
-      background: #c6c9a7;
-      font-size: 25px;
-      display: flex;
-      margin: 10px;
-      flex-direction: column;
-      border-radius: 4px;
-    }
-    .end-message .head {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      background-color: #1e2c19;
-      text-align: right;
-      color: #c6c9a7;
-      padding: 5px 7px 5px 0;
-      border-radius: 3px 3px 0 0;
-    }
-    .end-message .head button {
-      font-size: 25px;
-      line-height: 20px;
-      background-color: transparent;
-      border: none; 
-      color: #c6c9a7;
-      width: 25px;
-      height: 20px;
-    }
-    .end-message .head button:hover {
-      color: #7c90af;
-      cursor: pointer;
-    }
-    .end-message-content {
-      min-height: 10vh;
-      width: 40vw;
-      min-width: 250px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-      border-radius: 5px 5px;
-      padding: 25px; 
-    }
-    .end-message-content div{
-      padding: 10px;
-      font-size: 16px;
-      text-align: center;
-      width: 40vw;
-      min-width: 250px;
-    }
-    .by {
-      margin-top: 20px; 
-    }
-    .end-message a {
-      color: #2b4f7e;
-    }
-    .ui-info {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      z-index: 10;
-    }
-    .ui-info button{
-      font-size: 25px;
-      line-height: 10px;
-      background-color: #e4e3e6;
-      border: none; 
-      color: #2a2b20;
-      width: 35px;
-      height: 35px;
-      padding: 5px;
-      border-radius: 50px;
-      border: 1px  #2a2b20 solid;
-    }
-    .ui-info button:hover {
-      cursor: pointer;
-      background-color: #4e8f9b;
-    }
-    .cameras {
-      position: absolute;
-      z-index: 200;
-    }
-  </style>
-</head>
-<body>
-=======
     .app-title {
       position: absolute;
       z-index: 80;
@@ -314,29 +97,11 @@
       background-color: red;
       color: white;
     }
-
-  </style>
-</head>
-<body>
-  <div class="app-title">этаж 1</div>
->>>>>>> 8da6edc8780e6721d9abeda6f6dd4533d2681a10
-  <div class='start-screen'>
-
-      <div class = "load-container">
-        <button class="start" style="display: none;">Start</button>
-        <div class="load-wrapper">
-          <p><em>loading...</em></p>
-          <div class="progress-wrapper">
-            <div class="progress"></div> 
-          </div>
-        </div>  
-      </div>
-  </div>
-  <div class="ui-two">
-    <button class="butt-bang" style="display: none;">Ba-n-n-n-g!</button>
-  </div>
-  <div class="canvas-wrapper">
-    <canvas id='webgl-canvas'></canvas>
-  </div>
-<script type="text/javascript" src="app.bundle.js"></script></body>
-</html>
+    #mapbox-wrapper {
+      position: absolute;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 30vw;
+      height: 30vh;
+    }</style></head><body><div class="app-title">этаж 1</div><div class="start-screen"><div class="load-container"><button class="start" style="display: none;">Start</button><div class="load-wrapper"><p><em>loading...</em></p><div class="progress-wrapper"><div class="progress"></div></div></div></div></div><div class="ui-two"><button class="butt-bang" style="display: none;">Ba-n-n-n-g!</button></div><div class="canvas-wrapper"><canvas id="webgl-canvas"></canvas></div><div id="mapbox-wrapper"></div><script src="app.bundle.js"></script></body></html>
