@@ -33,8 +33,8 @@ gl_FragColor = vec4( mix( bottomColor, topColor, max( pow( max( h , 0.0), expone
 export function createStudio (emitterLink) {
   const emitter = emitterLink
 
-  let camera, scene, renderer,
-  assets = null
+  let camera, scene, scene2, renderer
+
 
 
   renderer = new THREE.WebGLRenderer({
@@ -42,9 +42,16 @@ export function createStudio (emitterLink) {
     antialias: true
   })
   renderer.setClearColor( 0x696c6d)
+  renderer.autoClear = false
+  renderer.autoClearColor = false
+  renderer.autoClearStencil = false
   renderer.setPixelRatio( window.devicePixelRatio)
   renderer.setSize( window.innerWidth, window.innerHeight )
+
   scene = new THREE.Scene()
+
+  scene2 = new THREE.Scene()
+
   //scene.background = 0x777777
   const lightA = new THREE.AmbientLight( 0xffffff, 0.7 )
   lightA.position.set( 5, 5, 5 )
@@ -63,12 +70,13 @@ export function createStudio (emitterLink) {
   const fragmentShader = fSh;
   const uniforms = {
     'topColor': { value: new THREE.Color( 0x7bb9e5 ) },
-    'bottomColor': { value: new THREE.Color( 0x7a8e90) },
+    //'bottomColor': { value: new THREE.Color( 0x7a8e90) },
+    'bottomColor': { value: new THREE.Color( 0x000000) },
     'offset': { value: 66 },
     'exponent': { value: 0.6 }
   };
 
- // scene.fog.color.copy( uniforms[ 'bottomColor' ].value );
+ scene.fog.color.copy( uniforms[ 'bottomColor' ].value );
 
   const skyGeo = new THREE.SphereGeometry( 4000, 32, 15 );
   const skyMat = new THREE.ShaderMaterial( {
@@ -98,7 +106,11 @@ export function createStudio (emitterLink) {
     if (!camera ) {
       return;
     }
+    renderer.clear()
     renderer.render( scene, camera )
+    renderer.clearDepth( )
+    renderer.render( scene2, camera )
+
   })
 
 
@@ -123,6 +135,14 @@ export function createStudio (emitterLink) {
 
     removeFromScene: mesh => {
       scene.remove(mesh)
-    } 
+    },
+
+    addToScene2: function (mesh) {
+      scene2.add(mesh)
+    },
+
+    removeFromScene2: mesh => {
+      scene2.remove(mesh)
+    },
   }
 }

@@ -3,6 +3,8 @@ import '../assets/icon-map.png'
 
 //import sceneSrc from '../assets/interier/scene.FBX'
 import floor01Src from '../assets/floor01.obj'
+import landSrc from '../assets/land.FBX'
+import sceneSrc from '../assets/land.glb'
 
 
 
@@ -13,6 +15,20 @@ export const ASSETS_TO_LOAD = [
         filename: floor01Src,
         key: 'floor01'
     },
+
+
+    // {
+    //     type: 'fbx',
+    //     filename: landSrc,
+    //     key: 'floor01'
+    // },
+
+    // {
+    //     type: 'glb',
+    //     filename: sceneSrc,
+    //     key: 'floor01'
+    // },
+
     // {
     //     type: 'img',
     //     filename: view1Src,

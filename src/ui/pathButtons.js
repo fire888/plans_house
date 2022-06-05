@@ -51,11 +51,11 @@ export const createButtons = (root) => {
         }
 
         root.actions.changePath({ currentStart, currentEnd })
-        //emitter.emit('changePath', { currentStart, currentEnd })
     }
 
 
     const startButtons = {}
+
 
     for (let key in LABELS_DATA) {
         const b = createButton('start', key, LABELS_DATA[key].text, onClick)
@@ -73,7 +73,11 @@ export const createButtons = (root) => {
     }
 
 
-    return {}
+    return {
+        click: data => {
+            onClick(data.dir, data.label)
+        },
+    }
 }
 
 

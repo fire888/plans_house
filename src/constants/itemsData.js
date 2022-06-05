@@ -4,8 +4,10 @@ const GREEN = "#117711"
 const YELLOW = "#776611"
 export const BLACK = "#22223F"
 export const WHITE = "#ffffff";
-const SIZE = [500, 120]
+const SIZE = [350, 120]
+const SIZE2 = [450, 120]
 export const LABEL_OFFSET_Y = .2
+
 
 
 export const CROSS_DATA = {
@@ -36,6 +38,7 @@ export const CROSS_DATA = {
     'path_l022': ['path011'],
     'path_l023': ['path012'],
 
+
     /** enter */
     'path013': ['path006', 'path014',],
     'path014': ['path013', 'path015',],
@@ -48,6 +51,8 @@ export const CROSS_DATA = {
     'path_g': ['path016'],
     'path_l000': ['path036'],
 
+
+
     /** stair */
     'path021' : ['path020', 'path022'],
     'path022' : ['path021', 'path023'],
@@ -56,7 +61,7 @@ export const CROSS_DATA = {
     'path025' : ['path024', 'path026'],
     'path026' : ['path025', 'path_l024'],
 
-    'path_l024': ['path026'],
+
 
     /** back */
     'path027': ['path006', 'path028', 'path029'],
@@ -72,28 +77,83 @@ export const CROSS_DATA = {
     'path_l025': ['path028'],
     'path_l026': ['path030'],
     'path_l027': ['path035'],
+
+
+
+    /** SECOND_FLOOR */
+    'path_l024': ['path026', 'path100', 'path107'],
+    'path100': ['path_l024', 'path101'],
+    'path101': ['path100', 'path_l100', 'path102'],
+    'path102': ['path101', 'path_l103', 'path104'],
+    'path104': ['path102', 'path_l105', 'path105'],
+    'path105': ['path_l106', 'path104', 'path103'],
+    'path103': ['path_l104', 'path105'],
+
+    /** stairs */
+    'path107': ['path024', 'path108'],
+    'path108': ['path107', 'path109'],
+    'path109': ['path108', 'path110'],
+    'path110': ['path109', 'path111'],
+    'path111': ['path110', 'path112'],
+
+
+    'path_l105': ['path104'],
+    'path_l103': ['path102'],
+    'path_l100': ['path101'],
+    'path_l106': ['path105'],
+    'path_l104': ['path103'],
+
+
+
+    /** THIRD FLOOR */
+    'path112': ['path111', 'path_l113', 'path113'],
+    'path113': ['path_l114', 'path112', 'path114'],
+    'path114': ['path_l115', 'path113', 'path115'],
+    'path115': ['path_l116', 'path114', 'path116'],
+    'path116': ['path115', 'path_l117'],
+
+    'path_l113': ['path112'],
+    'path_l114': ['path113'],
+    'path_l115': ['path114'],
+    'path_l116': ['path115'],
+    'path_l117': ['path116']
 }
 
 
 export const LABELS_DATA = {
-    'label000': { text: 'ВХОД', size: SIZE, color: BLACK, pathLabel: 'path_l000' },
-    'label012': { text: 'лаб. 101', size: SIZE, color: BLUE, pathLabel: 'path_l012' },
-    'label013': { text: 'лаб. 102', size: SIZE, color: BLUE, pathLabel: 'path_l013' },
-    'label014': { text: 'лаб. 103', size: SIZE, color: BLUE, pathLabel: 'path_l014' },
-    'label015': { text: 'лаб. 104', size: SIZE, color: BLUE, pathLabel: 'path_l015' },
-    'label016': { text: 'лаб. 105', size: SIZE, color: BLUE, pathLabel: 'path_l016' },
-    'label017': { text: 'гардероб', size: SIZE, color: BLACK, pathLabel: 'path_g'},
-    'label018': { text: 'лаб. 106', size: SIZE, color: RED, pathLabel: 'path_l018' },
-    'label019': { text: 'лаб. 107', size: SIZE, color: RED, pathLabel: 'path_l019' },
-    'label020': { text: 'лаб. 108', size: SIZE, color: RED, pathLabel: 'path_l020' },
-    'label021': { text: 'лаб. 109', size: SIZE, color: RED, pathLabel: 'path_l021' },
-    'label022': { text: 'лаб. 110', size: SIZE, color: RED, pathLabel: 'path_l022' },
-    'label023': { text: 'лаб. 111', size: SIZE, color: RED, pathLabel: 'path_l023' },
-    'label024': { text: 'лестница', size: SIZE, color: BLACK, pathLabel: 'path_l024' },
-    'label025': { text: 'лифт', size: SIZE, color: BLACK, pathLabel: 'path_l025' },
-    'label026': { text: 'лаб. 112', size: SIZE, color: GREEN, pathLabel: 'path_l026' },
-    'label027': { text: 'ВХОД 2', size: SIZE, color: BLACK, pathLabel: 'path_l027'},
+    'label000': { text: 'ВХОД', size: SIZE2, color: BLACK, pathLabel: 'path_l000' },
+    'label027': { text: 'ВХОД 2', size: SIZE2, color: BLACK, pathLabel: 'path_l027'},
+    'label012': { text: '101', size: SIZE, color: BLUE, pathLabel: 'path_l012' },
+    'label013': { text: '102', size: SIZE, color: BLUE, pathLabel: 'path_l013' },
+    'label014': { text: '103', size: SIZE, color: BLUE, pathLabel: 'path_l014' },
+    'label015': { text: '104', size: SIZE, color: BLUE, pathLabel: 'path_l015' },
+    'label016': { text: '105', size: SIZE, color: BLUE, pathLabel: 'path_l016' },
+    'label017': { text: 'гардероб', size: SIZE2, color: BLACK, pathLabel: 'path_g'},
+    'label018': { text: '106', size: SIZE, color: RED, pathLabel: 'path_l018' },
+    'label019': { text: '107', size: SIZE, color: RED, pathLabel: 'path_l019' },
+    'label020': { text: '108', size: SIZE, color: RED, pathLabel: 'path_l020' },
+    'label021': { text: '109', size: SIZE, color: RED, pathLabel: 'path_l021' },
+    'label022': { text: '110', size: SIZE, color: RED, pathLabel: 'path_l022' },
+    'label023': { text: '111', size: SIZE, color: RED, pathLabel: 'path_l023' },
+    'label026': { text: '112', size: SIZE, color: GREEN, pathLabel: 'path_l026' },
+    'label024': { text: 'лестница', size: SIZE2, color: BLACK, pathLabel: 'path_l024' },
+    'label025': { text: 'лифт', size: SIZE2, color: BLACK, pathLabel: 'path_l025' },
+    'label100': { text: '200', size: SIZE, color: BLUE, pathLabel: 'path_l100'},
+    'label101': { text: '201', size: SIZE, color: BLUE, pathLabel: 'path_l103'},
+    'label102': { text: '202', size: SIZE, color: BLUE, pathLabel: 'path_l105'},
+    'label103': { text: '203', size: SIZE, color: BLUE, pathLabel: 'path_l106'},
+    'label104': { text: '204', size: SIZE, color: BLUE, pathLabel: 'path_l104'},
+    'label209': { text: '300', size: SIZE, color: BLUE, pathLabel: 'path_l113'},
+    'label208': { text: '301', size: SIZE, color: BLUE, pathLabel: 'path_l114' },
+    'label207': { text: '302', size: SIZE, color: BLUE, pathLabel: 'path_l115'},
+    'label206': { text: '303', size: SIZE, color: BLUE, pathLabel: 'path_l116' },
+    'label205': { text: '304', size: SIZE, color: BLUE, pathLabel: 'path_l117'},
 }
+
+export const START_CLICKS_TO_PATH = [
+    { dir: 'start', label: 'label000', },
+    { dir: 'end', label: 'label205' },
+]
 
 
 export const RED_GROUP = [

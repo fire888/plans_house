@@ -10,12 +10,6 @@ export const createSystemArrows = (root, data) => {
 
     let mesh = null
 
-    // if (data['arrow01']) {
-    //     const arrPoints = data['arrow01'].geometry.attributes.position.array
-    //     mesh = createMesh(arrPoints)
-    //     root.studio.addToScene(mesh)
-    // }
-
     const pathPoints = root.system_assets.getPathPoints()
 
     const nodesData = {}
@@ -42,12 +36,17 @@ export const createSystemArrows = (root, data) => {
         }
     }
 
-
     const route = new Graph()
 
     for (let keyGraph in CROSS_DATA) {
         const cross = {}
         for (let i = 0; i < CROSS_DATA[keyGraph].length; ++i) {
+            if (!nodesData[keyGraph]) {
+                console.log('!!! no model named as ' + keyGraph + ' (exists in config)')
+            }
+            if (!nodesData[CROSS_DATA[keyGraph][i]]) {
+                console.log('!!! no model named as ' + CROSS_DATA[keyGraph][i] + ' (exists in config in ' + keyGraph + ')')
+            }
             cross[CROSS_DATA[keyGraph][i]] = 
                 nodesData[keyGraph].pos.distanceToSquared(nodesData[CROSS_DATA[keyGraph][i]].pos)
         }
@@ -66,7 +65,8 @@ export const createSystemArrows = (root, data) => {
     
             /** remove old arrow */
             if (mesh) {
-                root.studio.removeFromScene(mesh)
+                //root.studio.removeFromScene(mesh)
+                root.studio.removeFromScene2(mesh)
                 mesh.geometry.dispose()
                 mesh.material.dispose()
                 mesh = null
@@ -100,7 +100,7 @@ export const createSystemArrows = (root, data) => {
            // mesh.material.depthTest = false;
             //mesh.material.depthWrite = false;
             //mesh.onBeforeRender = function (renderer) { renderer.clearDepth(); };
-            root.studio.addToScene(mesh)
+            root.studio.addToScene2(mesh)
         }
     }
 }

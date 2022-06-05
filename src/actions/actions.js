@@ -5,7 +5,7 @@ export const createActions = (root) => {
                 root.system_assets.toggleVisibleFloor(keyFloor, is)
         },
         changePath: (data) => {
-            root.system_arrows.drawPath(data)
+            root.system_arrows && root.system_arrows.drawPath(data)
         }
     }
 } 

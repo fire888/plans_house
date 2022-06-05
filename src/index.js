@@ -8,6 +8,7 @@ import { createLoadManager } from './helpers/LoadManager'
 import { createCamera } from './entities/Camera'
 import { startFrameUpater } from './utils/createFrameUpater'
 //import { createProjector } from './helpers/Projector'
+import { START_CLICKS_TO_PATH} from './constants/itemsData'
 import { ASSETS_TO_LOAD } from './constants/constants_assetsToLoad'
 import { createSystemAllAssets } from './systems/system_AllAssets'
 import { createSystemLabels } from './systems/system_Labels'
@@ -48,11 +49,14 @@ const initApp = () => {
 
     const arrowData = root.system_assets.getArrows()
     root.system_arrows = createSystemArrows(root, arrowData)
+
     //root.system_mapbox = createMapBox(root)
 
     hideStartScreen()
 
     const buttons = createButtons(root)
+    buttons.click(START_CLICKS_TO_PATH[0])
+    buttons.click(START_CLICKS_TO_PATH[1])
     const floorsButtons = createFloorsButtons(root)
     //const cone = createProjector(player.getCamera(), assets['scene'])
     //studio.addToScene(cone)

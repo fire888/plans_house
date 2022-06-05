@@ -1,6 +1,9 @@
 import * as THREE from 'three'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-// import 'three/examples/js/loaders/GLTFLoader'
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
+'three/examples/js/loaders/GLTFLoader'
 
 
 export function createLoadManager () {
@@ -60,9 +63,9 @@ export function createLoadManager () {
 
 
             objLoader = new OBJLoader();
-            //gltfLoader = new THREE.GLTFLoader();
+            gltfLoader = new GLTFLoader();
             textureLoader = new THREE.TextureLoader();
-            //fbxLoader = new THREE.FBXLoader();
+            fbxLoader = new FBXLoader()
 
             loadAsset(ASSETS_TO_LOAD[index]);
         })

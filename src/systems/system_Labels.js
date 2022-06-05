@@ -11,8 +11,9 @@ const createCanvas = (text, size, color, colorFont) => {
     canvas.width = size[0]
     canvas.height = size[1]
 
-    ctx.lineWidth = 16;
-    ctx.strokeStyle = color === WHITE ? BLACK : WHITE;
+    ctx.lineWidth = 1;
+    //ctx.strokeStyle = color === WHITE ? BLACK : WHITE;
+    ctx.strokeStyle = BLACK;
     ctx.fillStyle = color
 
     ctx.beginPath();
@@ -30,41 +31,43 @@ const createCanvas = (text, size, color, colorFont) => {
 }
 
 
-const createSprite = (key, data) => {
-
-    if (LABELS_DATA[key]) {
-        const { text, size, color, colorFont = WHITE } = LABELS_DATA[key]
-        const map = new THREE.CanvasTexture(createCanvas(text, size, color, colorFont));
-    
-        const material = new THREE.SpriteMaterial( { map: map } );
-    
-        const sprite = new THREE.Sprite( material );
-        const pos = [
-            data.geometry.attributes.position.array[3],
-            data.geometry.attributes.position.array[4] + LABEL_OFFSET_Y,
-            data.geometry.attributes.position.array[5],
-        ]
-    
-        sprite.position.fromArray(pos)
-        sprite.scale.x = size[0] / 140
-        sprite.scale.y = size[1] / 140
-        return sprite
+const createSprite = (key, labelsLinesModel) => {
+    if (!LABELS_DATA[key]) {
+        console.log('!!!! no label ' + key + ' in config')
+        return null;
     }
-    return null
+
+    const { text, size, color, colorFont = WHITE } = LABELS_DATA[key]
+    const map = new THREE.CanvasTexture(createCanvas(text, size, color, colorFont));
+
+    const material = new THREE.SpriteMaterial( { map: map, transparent: true, opacity: 0.9} );
+
+    const sprite = new THREE.Sprite( material );
+    const pos = [
+        labelsLinesModel.geometry.attributes.position.array[3],
+        labelsLinesModel.geometry.attributes.position.array[4] + LABEL_OFFSET_Y,
+        labelsLinesModel.geometry.attributes.position.array[5],
+    ]
+
+    sprite.position.fromArray(pos)
+    sprite.scale.x = size[0] / 140
+    sprite.scale.y = size[1] / 140
+    return sprite
 }
 
 
-export const createSystemLabels = (root, labelsData) => {
-    
+export const createSystemLabels = (root, labelsLinesModels) => {
     const sprites = {}
 
     let oldSpStart = null
     let oldSpEnd = null
 
-    for (let key in labelsData) {
-        const sprite = createSprite(key, labelsData[key])
-        sprite && root.studio.addToScene(sprite)
-        sprites[key] = { s: sprite, scale: [sprite.scale.x, sprite.scale.y] }
+    for (let key in labelsLinesModels) {
+        const sprite = createSprite(key, labelsLinesModels[key])
+        if (sprite) {
+            root.studio.addToScene2(sprite)
+            sprites[key] = {s: sprite, scale: [sprite.scale.x, sprite.scale.y]}
+        }
     }
 
     root.emitter.subscribe('changePath', ({ currentStart, currentEnd }) => {

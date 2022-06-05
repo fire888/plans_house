@@ -12,8 +12,6 @@ const createButton = (keyLabel, onClick) => {
 
 
 export const createFloorsButtons = (root) => {
-    const { emitter } = root 
-
     const container = document.createElement('div')
     container.classList.add('floors-cont')
     document.body.appendChild(container)
@@ -24,13 +22,11 @@ export const createFloorsButtons = (root) => {
 
 
     const onClick = (keyLabel) => {
-        console.log('!!!', keyLabel)
         floorsButtons[keyLabel].isDown = !floorsButtons[keyLabel].isDown
         floorsButtons[keyLabel].isDown 
             ? floorsButtons[keyLabel].elem.classList.add('red')
             : floorsButtons[keyLabel].elem.classList.remove('red')
 
-        //emitter.emit('changeFloor', floorsButtons)
         root.actions.toggleVisibleFloor(keyLabel, !floorsButtons[keyLabel].isDown)
     }
 

@@ -6,7 +6,7 @@ import { RED_GROUP, BLUE_GROUP, GREEN_GROUP } from '../constants/itemsData'
 const createMaterials = () => {
     return {
         'floor': new THREE.MeshPhongMaterial({
-            color: 0xffffff,
+            color: 0x333333,
             specular: 0x111111,
             emissive: 0x000000,
             shininess: 0,
@@ -14,7 +14,7 @@ const createMaterials = () => {
             opacity: 0.50,
         }),
         'wall': new THREE.MeshPhongMaterial({
-            color: 0x4f7171,
+            color: 0x333333,
             //color: 0x9faeae,
             specular: 0x111111,
             emissive: 0x000000,
@@ -81,11 +81,11 @@ const createMaterials = () => {
             color: 0x990000,
         }),
         'wireframe': new THREE.MeshBasicMaterial({
-            color: 0x000000,
+            color: 0xffffff,
             wireframe: true,
         }),
         'lineMat': new THREE.LineBasicMaterial( {
-            color: 0x777777,
+            color: 0xffffff,
             linewidth: 1,
             linecap: 'round', //ignored by WebGLRenderer
             linejoin:  'round' //ignored by WebGLRenderer
@@ -97,7 +97,7 @@ const createMaterials = () => {
             linejoin:  'round' //ignored by WebGLRenderer
         }),
         'lineMatBlack': new THREE.LineBasicMaterial( {
-            color: 0x225544,
+            color: 0x229944,
             linewidth: 1,
             linecap: 'round', //ignored by WebGLRenderer
             linejoin:  'round' //ignored by WebGLRenderer
@@ -125,10 +125,17 @@ export const createSystemAllAssets = (root) => {
         'floor01': [],
         'floor02': [],
         'floor03': [],
+        'floor04': [],
     }
 
 
     const createLevel = (assets) => {
+
+        // assets['floor01'].scene.traverse(child => {
+        //     if (child.material) {
+        //         items[child.name] = child
+        //     }
+        // })
 
 
         assets['floor01'].traverse(child => {
@@ -220,7 +227,6 @@ export const createSystemAllAssets = (root) => {
 
             studio.addToScene(items[key])
         }
-        console.log(floorsGroups)
     }
 
     return {
