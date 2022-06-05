@@ -11,7 +11,7 @@ const createMaterials = () => {
             emissive: 0x000000,
             shininess: 0,
             transparent: true,
-            opacity: 0.80,
+            opacity: 0.50,
         }),
         'wall': new THREE.MeshPhongMaterial({
             color: 0x4f7171,
@@ -20,7 +20,7 @@ const createMaterials = () => {
             emissive: 0x000000,
             shininess: 0,
             transparent: true,
-            opacity: .9,
+            opacity: .5,
         }),
         'stairsAndLift': new THREE.MeshPhongMaterial({
             color: 0x999900,
