@@ -4,7 +4,7 @@ const GREEN = "#117711"
 const YELLOW = "#776611"
 export const BLACK = "#22223F"
 export const WHITE = "#ffffff";
-const SIZE = [350, 120]
+const SIZE = [220, 120]
 const SIZE2 = [450, 120]
 export const LABEL_OFFSET_Y = .2
 
@@ -163,6 +163,20 @@ export const RED_GROUP = [
     'floor01_item11',
     'floor01_item12',
     'floor01_item13',
+
+    'floor02_item109',
+    'floor02_item110',
+    'floor02_item111',
+    'floor02_item112',
+    'floor02_item113',
+    'floor02_item114',
+
+    'floor03_item125',
+    'floor03_item124',
+    'floor03_item123',
+    'floor03_item122',
+    'floor03_item121',
+    'floor03_item120',
 ]
 export const BLUE_GROUP = [
     'floor01_item103',
@@ -170,6 +184,16 @@ export const BLUE_GROUP = [
     'floor01_item07',
     'floor01_item06',
     'floor01_item05',
+    'floor02_item104',
+    'floor02_item105',
+    'floor02_item106',
+    'floor02_item107',
+    'floor02_item108',
+    'floor03_item115',
+    'floor03_item116',
+    'floor03_item117',
+    'floor03_item118',
+    'floor03_item119'
 ]
 export const GREEN_GROUP = [
     'floor01_item15',

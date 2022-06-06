@@ -144,7 +144,7 @@ export const createMesh = pointsArr => {
     const mesh = new THREE.Mesh(
         geom,
         new THREE.MeshBasicMaterial({ 
-            color: 0xFF0000, 
+            color: 0xFFFFFF,
             side: THREE.DoubleSide,
             wireframe: false 
         })

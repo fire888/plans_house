@@ -5,62 +5,94 @@ import { RED_GROUP, BLUE_GROUP, GREEN_GROUP } from '../constants/itemsData'
 
 const createMaterials = () => {
     return {
+        // 'floor': new THREE.MeshPhongMaterial({
+        //     color: 0x333333,
+        //     specular: 0x111111,
+        //     emissive: 0x000000,
+        //     shininess: 0,
+        //     transparent: true,
+        //     opacity: 0.50,
+        // }),
         'floor': new THREE.MeshPhongMaterial({
-            color: 0x333333,
-            specular: 0x111111,
+            color: 0xffffff,
+            //color: 0x9faeae,
+            specular: 0xffffff,
             emissive: 0x000000,
             shininess: 0,
             transparent: true,
-            opacity: 0.50,
+            opacity: .2,
         }),
         'wall': new THREE.MeshPhongMaterial({
-            color: 0x333333,
+            color: 0xffffff,
             //color: 0x9faeae,
-            specular: 0x111111,
+            specular: 0xffffff,
             emissive: 0x000000,
             shininess: 0,
             transparent: true,
-            opacity: .5,
+            opacity: .2,
         }),
         'stairsAndLift': new THREE.MeshPhongMaterial({
-            color: 0x999900,
+            color: 0xffff99,
             specular: 0x111111,
             emissive: 0x000000,
             shininess: 0,
-            transparent: true,
-            opacity: 0.80,
+            // transparent: true,
+            // opacity: 0.80,
         }),
-        'lab': new THREE.MeshPhongMaterial({
-            color: 0x996622,
+        // 'stairsAndLift': new THREE.MeshBasicMaterial({
+        //     color: 0xffff00,
+        //     //transparent: true,
+        //     //opacity: 0.80,
+        // }),
+        // 'lab': new THREE.MeshPhongMaterial({
+        //     color: 0x996622,
+        //     specular: 0x111111,
+        //     emissive: 0x000000,
+        //     shininess: 0,
+        //     transparent: true,
+        //     opacity: 0.80,
+        // }),
+        'lab': new THREE.MeshBasicMaterial({
+            color: 0x886600,
             specular: 0x111111,
-            emissive: 0x000000,
-            shininess: 0,
             transparent: true,
-            opacity: 0.80,
+            opacity: 0.5,
         }),
-        'labRed': new THREE.MeshPhongMaterial({
-            color: 0xFF5533,
+        // 'labRed': new THREE.MeshPhongMaterial({
+        //     color: 0xFF5533,
+        //     specular: 0x111111,
+        //     emissive: 0x000000,
+        //     shininess: 0,
+        //     transparent: true,
+        //     opacity: 0.90,
+        // }),
+        // 'labBlue': new THREE.MeshPhongMaterial({
+        //     color: 0x223388,
+        //     specular: 0x111111,
+        //     emissive: 0x000000,
+        //     shininess: 0,
+        //     transparent: true,
+        //     opacity: 0.5,
+        // }),
+        'labBlue': new THREE.MeshBasicMaterial({
+            color: 0x223388,
             specular: 0x111111,
-            emissive: 0x000000,
-            shininess: 0,
             transparent: true,
-            opacity: 0.90,
+            opacity: 0.5,
         }),
-        'labBlue': new THREE.MeshPhongMaterial({
-            color: 0x3355FF,
+        // 'labGreen': new THREE.MeshPhongMaterial({
+        //     color: 0x228822,
+        //     specular: 0x111111,
+        //     emissive: 0x000000,
+        //     shininess: 0,
+        //     transparent: true,
+        //     opacity: 0.90,
+        // }),
+        'labGreen': new THREE.MeshBasicMaterial({
+            color: 0x228822,
             specular: 0x111111,
-            emissive: 0x000000,
-            shininess: 0,
             transparent: true,
-            opacity: 0.90,
-        }),
-        'labGreen': new THREE.MeshPhongMaterial({
-            color: 0x33FF33,
-            specular: 0x111111,
-            emissive: 0x000000,
-            shininess: 0,
-            transparent: true,
-            opacity: 0.90,
+            opacity: 0.50,
         }),
         'matRed': new THREE.MeshPhongMaterial({
             color: 0xFF0000,
@@ -71,6 +103,13 @@ const createMaterials = () => {
             opacity: 0.90,
             side: THREE.DoubleSide,
         }),
+        'labRed': new THREE.MeshBasicMaterial({
+            color: 0x883322,
+            specular: 0x111111,
+            transparent: true,
+            opacity: 0.50,
+        }),
+
         'man': new THREE.MeshPhongMaterial({
             color: 0x888800,
             specular: 0xffffff,
@@ -88,7 +127,9 @@ const createMaterials = () => {
             color: 0xffffff,
             linewidth: 1,
             linecap: 'round', //ignored by WebGLRenderer
-            linejoin:  'round' //ignored by WebGLRenderer
+            linejoin:  'round', //ignored by WebGLRenderer
+            transparent: true,
+            opacity: .5,
         }),
         'lineMatDark': new THREE.LineBasicMaterial( {
             color: 0x111111,
@@ -165,7 +206,8 @@ export const createSystemAllAssets = (root) => {
             }
             if (
                 key.includes('stairs') ||
-                key.includes('lift')
+                key.includes('lift') ||
+                key.includes('cloackroom')
             ) {
                 items[key].material = materials.stairsAndLift
             }
@@ -225,7 +267,15 @@ export const createSystemAllAssets = (root) => {
                 }
             }
 
-            studio.addToScene(items[key])
+            if (
+                key.includes('stairs') ||
+                key.includes('lift') ||
+                key.includes('cloackroom')
+            ) {
+                studio.addToScene2(items[key])
+            } else {
+                studio.addToScene(items[key])
+            }
         }
     }
 

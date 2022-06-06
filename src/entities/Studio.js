@@ -66,6 +66,15 @@ export function createStudio (emitterLink) {
   hemiLight.position.set( 0, 50, 0 );
   scene.add( hemiLight );
 
+
+  const light2 = new THREE.PointLight( 0xffffff, 1, 1000 );
+  light2.position.set( 0, 20, 100);
+  scene2.add(light2)
+
+  const lightA2 = new THREE.AmbientLight( 0xffffff, .5 )
+  lightA2.position.set( 5, 5, 5 )
+  scene2.add(lightA2)
+
   const vertexShader = vSh;
   const fragmentShader = fSh;
   const uniforms = {
