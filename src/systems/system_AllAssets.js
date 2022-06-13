@@ -14,22 +14,23 @@ const createMaterials = () => {
         //     opacity: 0.50,
         // }),
         'floor': new THREE.MeshPhongMaterial({
-            color: 0xffffff,
+            color: 0x0000ff,
             //color: 0x9faeae,
             specular: 0xffffff,
             emissive: 0x000000,
-            shininess: 0,
+            shininess: 10,
             transparent: true,
             opacity: .2,
         }),
         'wall': new THREE.MeshPhongMaterial({
-            color: 0xffffff,
+            color: 0x00ffff,
             //color: 0x9faeae,
             specular: 0xffffff,
             emissive: 0x000000,
-            shininess: 0,
+            shininess: 10,
             transparent: true,
             opacity: .2,
+            side: THREE.DoubleSide,
         }),
         'stairsAndLift': new THREE.MeshPhongMaterial({
             color: 0xffff99,
@@ -78,7 +79,7 @@ const createMaterials = () => {
             color: 0x223388,
             specular: 0x111111,
             transparent: true,
-            opacity: 0.5,
+            opacity: 1,
         }),
         // 'labGreen': new THREE.MeshPhongMaterial({
         //     color: 0x228822,
@@ -124,7 +125,7 @@ const createMaterials = () => {
             wireframe: true,
         }),
         'lineMat': new THREE.LineBasicMaterial( {
-            color: 0xffffff,
+            color: 0x00ffff,
             linewidth: 1,
             linecap: 'round', //ignored by WebGLRenderer
             linejoin:  'round', //ignored by WebGLRenderer
@@ -138,13 +139,13 @@ const createMaterials = () => {
             linejoin:  'round' //ignored by WebGLRenderer
         }),
         'lineMatBlack': new THREE.LineBasicMaterial( {
-            color: 0x229944,
+            color: 0x2299ff,
             linewidth: 1,
             linecap: 'round', //ignored by WebGLRenderer
             linejoin:  'round' //ignored by WebGLRenderer
         }),
         'lineMatWhite': new THREE.LineBasicMaterial( {
-            color: 0xffffff,
+            color: 0x2299ff,
             linewidth: 1,
             linecap: 'round', //ignored by WebGLRenderer
             linejoin:  'round' //ignored by WebGLRenderer

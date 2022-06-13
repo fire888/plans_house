@@ -66,7 +66,7 @@ export const createSystemArrows = (root, data) => {
             /** remove old arrow */
             if (mesh) {
                 //root.studio.removeFromScene(mesh)
-                root.studio.removeFromScene2(mesh)
+                root.studio.removeFromScene3(mesh)
                 mesh.geometry.dispose()
                 mesh.material.dispose()
                 mesh = null
@@ -100,7 +100,7 @@ export const createSystemArrows = (root, data) => {
            // mesh.material.depthTest = false;
             //mesh.material.depthWrite = false;
             //mesh.onBeforeRender = function (renderer) { renderer.clearDepth(); };
-            root.studio.addToScene2(mesh)
+            root.studio.addToScene3(mesh)
         }
     }
 }

@@ -33,7 +33,7 @@ gl_FragColor = vec4( mix( bottomColor, topColor, max( pow( max( h , 0.0), expone
 export function createStudio (emitterLink) {
   const emitter = emitterLink
 
-  let camera, scene, scene2, renderer
+  let camera, scene, scene2, scene3, renderer
 
 
 
@@ -49,15 +49,16 @@ export function createStudio (emitterLink) {
   renderer.setSize( window.innerWidth, window.innerHeight )
 
   scene = new THREE.Scene()
-
   scene2 = new THREE.Scene()
+  scene3 = new THREE.Scene()
 
   //scene.background = 0x777777
   const lightA = new THREE.AmbientLight( 0xffffff, 0.7 )
   lightA.position.set( 5, 5, 5 )
   scene.add( lightA )
   const light = new THREE.PointLight( 0xffffff, 3.5, 1000 );
-  light.position.set( 0, 50, 500);
+  //light.position.set( 0, 50, 500);
+  light.position.set( 17, 25, 19);
   scene.add( light );
   scene.fog = new THREE.Fog(0x576066, 0, 400)
   const hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
@@ -116,10 +117,11 @@ export function createStudio (emitterLink) {
       return;
     }
     renderer.clear()
-    renderer.render( scene, camera )
-    renderer.clearDepth( )
-    renderer.render( scene2, camera )
-
+    renderer.render(scene, camera)
+    renderer.clearDepth()
+    renderer.render(scene2, camera)
+    renderer.clearDepth()
+    renderer.render(scene3, camera)
   })
 
 
@@ -149,9 +151,17 @@ export function createStudio (emitterLink) {
     addToScene2: function (mesh) {
       scene2.add(mesh)
     },
-
     removeFromScene2: mesh => {
       scene2.remove(mesh)
     },
+
+    addToScene3: function (mesh) {
+      scene3.add(mesh)
+    },
+    removeFromScene3: function (mesh) {
+      scene3.remove(mesh)
+    },
+
+
   }
 }
