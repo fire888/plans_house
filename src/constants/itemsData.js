@@ -365,7 +365,7 @@ export const BLUE_GROUP = [
     'floor03_item116',
     'floor03_item117',
     'floor03_item118',
-    'floor03_item119'
+    'floor03_item119',
 ]
 export const GREEN_GROUP = [
     'floor01_item15',

@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 18.06.2022 21:52:18
+# File Created: 18.06.2022 22:30:33
 
 #
 # object floor01_cloackroom00
@@ -7530,7 +7530,7 @@ g path116
 l 2476 2477
 
 #
-# object floor0401
+# object floor04_down555
 #
 
 v  -31.4205 11.4297 -6.5337
@@ -7552,7 +7552,7 @@ vn 0.0000 1.0000 -0.0000
 vn -0.0000 1.0000 0.0000
 # 3 vertex normals
 
-g floor0401
+g floor04_down555
 s 1
 f 2478//406 2479//407 2480//407 2481//406 
 s off
