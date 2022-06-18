@@ -79,7 +79,7 @@ const createMaterials = () => {
             color: 0x223388,
             specular: 0x111111,
             transparent: true,
-            opacity: 1,
+            opacity: .5,
         }),
         // 'labGreen': new THREE.MeshPhongMaterial({
         //     color: 0x228822,
@@ -273,7 +273,7 @@ export const createSystemAllAssets = (root) => {
                 key.includes('lift') ||
                 key.includes('cloackroom')
             ) {
-                studio.addToScene2(items[key])
+                // studio.addToScene2(items[key])
             } else {
                 studio.addToScene(items[key])
             }

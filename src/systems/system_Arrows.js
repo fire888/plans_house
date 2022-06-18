@@ -43,9 +43,11 @@ export const createSystemArrows = (root, data) => {
         for (let i = 0; i < CROSS_DATA[keyGraph].length; ++i) {
             if (!nodesData[keyGraph]) {
                 console.log('!!! no model named as ' + keyGraph + ' (exists in config)')
+                continue;
             }
             if (!nodesData[CROSS_DATA[keyGraph][i]]) {
                 console.log('!!! no model named as ' + CROSS_DATA[keyGraph][i] + ' (exists in config in ' + keyGraph + ')')
+                continue;
             }
             cross[CROSS_DATA[keyGraph][i]] = 
                 nodesData[keyGraph].pos.distanceToSquared(nodesData[CROSS_DATA[keyGraph][i]].pos)
