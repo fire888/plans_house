@@ -30,7 +30,7 @@ const createMaterials = () => {
             shininess: 10,
             transparent: true,
             opacity: .2,
-            side: THREE.DoubleSide,
+            //side: THREE.DoubleSide,
         }),
         'stairsAndLift': new THREE.MeshPhongMaterial({
             color: 0xffff99,
