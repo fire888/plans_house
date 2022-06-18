@@ -68,30 +68,43 @@ export const CROSS_DATA = {
     /** back */
     'path027': ['path006', 'path028', 'path117'],
     'path028': ['path027', 'path_l025'], // lift
-    'path117': ['path028', 'path118', 'path126'],
-    'path126': ['path117', 'path_l127'], // 117
+    'path_l025': ['path028'],
+    'path117': ['path027', 'path118', 'path126'],
+    'path126': ['path117', 'path_l127', 'path027'], // 117
+    'path_l127': ['path126'], // 117
     'path118': ['path117', 'path119', 'path127'],
     'path127': ['path118', 'path_l128'], //116
+    'path_l128': ['path127'],
     'path119': ['path118', 'path120', 'path128'],
     'path128': ['path119', 'path_l129'], //115
+    'path_l129': ['path128'],
     'path120': ['path119', 'path121', 'path129', 'path130'],
     'path129': ['path120', 'path_l130'], //114
+    'path_l130': ['path129'],
     'path130': ['path120', 'path_l131'], //118
+    'path_l131': ['path130'], //118
     'path121': ['path120', 'path122', 'path131', 'path132'],
     'path131': ['path121','path_l132'], //123
+    'path_l132': ['path121'], //123
     'path132': ['path121', 'path_l133'], //119
+    'path_l133': ['path132'], //119
     'path122': ['path121', 'path133', 'path123', 'path134'],
     'path133': ['path122', 'path_l134'], //122
+    'path_l134': ['path133'], //122
     'path134': ['path122', 'path135', 'path136'],
     'path135': ['path134', 'path_l135'], //121
+    'path_l135': ['path135'],
     'path136': ['path134', 'path137'],
     'path137': ['path136', 'path_l136'],  // 120
+    'path_l136': ['path137'],  // 120
     'path123': ['path122', 'path124', 'path138'],
     'path138': ['path123', 'path_l026'],
+    'path_l026': ['path138'],
     'path124': ['path123', 'path033'],
     'path033': ['path123', 'path034'],
     'path034': ['path033', 'path035'],
     'path035': ['path034', 'path_l027'], // exit2
+    'path_l027': ['path035'],
 
     //
     // /** SECOND_FLOOR */
@@ -147,35 +160,75 @@ export const CROSS_DATA = {
     'path182': ['path181', 'path183'],
     'path183': ['path182'],
 
-
-
     //
     // /** stairs */
-    // 'path107': ['path024', 'path108'],
-    // 'path108': ['path107', 'path109'],
-    // 'path109': ['path108', 'path110'],
-    // 'path110': ['path109', 'path111'],
-    // 'path111': ['path110', 'path112'],
-    //
-    //
-    // 'path_l105': ['path104'],
-    // 'path_l103': ['path102'],
-    // 'path_l100': ['path101'],
-    // 'path_l106': ['path105'],
-    // 'path_l104': ['path103'],
-    //
-    // /** THIRD FLOOR */
-    // 'path112': ['path111', 'path_l113', 'path113'],
-    // 'path113': ['path_l114', 'path112', 'path114'],
-    // 'path114': ['path_l115', 'path113', 'path115'],
-    // 'path115': ['path_l116', 'path114', 'path116'],
-    // 'path116': ['path115', 'path_l117'],
-    //
-    // 'path_l113': ['path112'],
-    // 'path_l114': ['path113'],
-    // 'path_l115': ['path114'],
-    // 'path_l116': ['path115'],
-    // 'path_l117': ['path116']
+    'path107': ['path024', 'path108'],
+    'path108': ['path107', 'path109'],
+    'path109': ['path108', 'path110'],
+    'path110': ['path109', 'path111'],
+    'path111': ['path110', 'path112', 'path184'],
+
+    'path_l105': ['path104'],
+    'path_l103': ['path102'],
+    'path_l100': ['path101'],
+    'path_l106': ['path105'],
+    'path_l104': ['path103'],
+
+    /** THIRD FLOOR */
+    'path112': ['path111', 'path_l113', 'path113'],
+    'path113': ['path_l114', 'path112', 'path114'],
+    'path114': ['path_l115', 'path113', 'path115'],
+    'path115': ['path_l116', 'path114', 'path116'],
+    'path116': ['path115', 'path_l117'],
+
+    'path_l113': ['path112'],
+    'path_l114': ['path113'],
+    'path_l115': ['path114'],
+    'path_l116': ['path115'],
+    'path_l117': ['path116'],
+
+    'path184': ['path111', 'path185', 'path202' ],
+    'path185': ['path184', 'path186'],
+    'path186': ['path185', 'path187'],
+    'path187': ['path186', 'path188'],
+    'path188': ['path187', 'path189'],
+    'path189': ['path188', 'path190'],
+    'path190': ['path189', 'path191'],
+    'path191': ['path190', 'path192'],
+    'path192': ['path191', 'path193'],
+    'path193': ['path192', 'path194'],
+    'path194': ['path193', 'path195'],
+    'path195': ['path194', 'path196'],
+    'path196': ['path195', 'path197'],
+    'path197': ['path196', 'path198'],
+    'path198': ['path197', 'path199'],
+    'path199': ['path198', 'path200'],
+    'path200': ['path199', 'path201'],
+    'path201': ['path200'],
+
+    'path202': ['path184', 'path203'],
+    'path203': ['path202', 'path204'],
+    'path204': ['path203', 'path205'],
+    'path205': ['path204', 'path206'],
+    'path206': ['path205', 'path207'],
+    'path207': ['path206', 'path208'],
+    'path208': ['path207', 'path209'],
+    'path209': ['path208', 'path210'],
+    'path210': ['path209', 'path211'],
+    'path211': ['path210', 'path212'],
+    'path212': ['path211', 'path213'],
+    'path213': ['path212', 'path214'],
+    'path214': ['path213', 'path215'],
+    'path215': ['path214', 'path216'],
+    'path216': ['path215', 'path217'],
+    'path217': ['path216', 'path218'],
+    'path218': ['path217', 'path219', 'path221'],
+    'path219': ['path218', 'path220'],
+    'path220': ['path219'],
+    'path221': ['path218', 'path222'],
+    'path222': ['path221', 'path223'],
+    'path223': ['path222'],
+
 }
 
 
@@ -249,23 +302,23 @@ export const LABELS_DATA = {
     'label206': { text: '303', size: SIZE, color: BLUE, pathLabel: 'path_l116' },
     'label205': { text: '304', size: SIZE, color: BLUE, pathLabel: 'path_l117'},
 
-    'label250': { text: '305', size: SIZE, color: RED, pathLabel: 'path_l117'},
-    'label251': { text: '306', size: SIZE, color: RED, pathLabel: 'path_l117'},
-    'label252': { text: '307', size: SIZE, color: RED, pathLabel: 'path_l117'},
-    'label253': { text: '308', size: SIZE, color: RED, pathLabel: 'path_l117'},
-    'label254': { text: '309', size: SIZE, color: RED, pathLabel: 'path_l117'},
-    'label255': { text: '310', size: SIZE, color: RED, pathLabel: 'path_l117'},
+    'label250': { text: '305', size: SIZE, color: RED, pathLabel: 'path201'},
+    'label251': { text: '306', size: SIZE, color: RED, pathLabel: 'path198'},
+    'label252': { text: '307', size: SIZE, color: RED, pathLabel: 'path195'},
+    'label253': { text: '308', size: SIZE, color: RED, pathLabel: 'path192'},
+    'label254': { text: '309', size: SIZE, color: RED, pathLabel: 'path189'},
+    'label255': { text: '310', size: SIZE, color: RED, pathLabel: 'path186'},
 
-    'label256': { text: '311', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
-    'label257': { text: '312', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
-    'label258': { text: '313', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
-    'label259': { text: '314', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
-    'label260': { text: '315', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
-    'label261': { text: '316', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
-    'label262': { text: '317', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
-    'label263': { text: '318', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
-    'label264': { text: '319', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
-    'label265': { text: '320', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
+    'label256': { text: '311', size: SIZE, color: GREEN, pathLabel: 'path220'},
+    'label257': { text: '312', size: SIZE, color: GREEN, pathLabel: 'path218'},
+    'label258': { text: '313', size: SIZE, color: GREEN, pathLabel: 'path223'},
+    'label259': { text: '314', size: SIZE, color: GREEN, pathLabel: 'path215'},
+    'label260': { text: '315', size: SIZE, color: GREEN, pathLabel: 'path212'},
+    'label261': { text: '316', size: SIZE, color: GREEN, pathLabel: 'path209'},
+    'label262': { text: '317', size: SIZE, color: GREEN, pathLabel: 'path206'},
+    'label263': { text: '318', size: SIZE, color: GREEN, pathLabel: 'path203'},
+    // 'label264': { text: '319', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
+    // 'label265': { text: '320', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
 
 }
 
