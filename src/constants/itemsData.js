@@ -40,7 +40,6 @@ export const CROSS_DATA = {
     'path_l022': ['path011'],
     'path_l023': ['path012'],
 
-
     /** enter */
     'path013': ['path006', 'path014',],
     'path014': ['path013', 'path015',],
@@ -49,11 +48,8 @@ export const CROSS_DATA = {
     'path017': ['path016', 'path018'],
     'path018': ['path017', 'path036'],
     'path036': ['path018', 'path_l000'],
-
     'path_g': ['path016'],
     'path_l000': ['path036'],
-
-
 
     /** stair */
     'path021' : ['path020', 'path022'],
@@ -62,8 +58,6 @@ export const CROSS_DATA = {
     'path024' : ['path023', 'path025'],
     'path025' : ['path024', 'path026'],
     'path026' : ['path025', 'path_l024'],
-
-
 
     /** back */
     'path027': ['path006', 'path028', 'path117'],
@@ -106,8 +100,7 @@ export const CROSS_DATA = {
     'path035': ['path034', 'path_l027'], // exit2
     'path_l027': ['path035'],
 
-    //
-    // /** SECOND_FLOOR */
+    /** SECOND_FLOOR */
     'path_l024': ['path026', 'path100', 'path107'],
     'path100': ['path_l024', 'path101', 'path158'],
     'path101': ['path100', 'path_l100', 'path102'],
@@ -160,8 +153,7 @@ export const CROSS_DATA = {
     'path182': ['path181', 'path183'],
     'path183': ['path182'],
 
-    //
-    // /** stairs */
+    /** stairs */
     'path107': ['path024', 'path108'],
     'path108': ['path107', 'path109'],
     'path109': ['path108', 'path110'],
@@ -228,7 +220,6 @@ export const CROSS_DATA = {
     'path221': ['path218', 'path222'],
     'path222': ['path221', 'path223'],
     'path223': ['path222'],
-
 }
 
 
@@ -238,7 +229,6 @@ export const LABELS_DATA = {
     'label017': { text: 'гардероб', size: SIZE2, color: GREEN2, colorFont: GREEN0, pathLabel: 'path_g'},
     'label025': { text: 'лифт', size: SIZE2, color: GREEN2, colorFont: GREEN0, pathLabel: 'path_l025' },
     'label024': { text: 'лестница', size: SIZE2, color: GREEN2, colorFont: GREEN0, pathLabel: 'path_l024' },
-
 
     'label012': { text: '101', size: SIZE, color: BLUE, pathLabel: 'path_l012' },
     'label013': { text: '102', size: SIZE, color: BLUE, pathLabel: 'path_l013' },
@@ -265,7 +255,6 @@ export const LABELS_DATA = {
     'label096': { text: '122', size: SIZE, color: GREEN, pathLabel: 'path_l134' },
     'label27': { text: '123', size: SIZE, color: GREEN, pathLabel: 'path_l132' },
 
-
     /** 2 **************************/
 
     'label100': { text: '200', size: SIZE, color: BLUE, pathLabel: 'path_l100'},
@@ -280,7 +269,6 @@ export const LABELS_DATA = {
     'label154': { text: '209', size: SIZE, color: RED, pathLabel: 'path142'},
     'label155': { text: '210', size: SIZE, color: RED, pathLabel: 'path139'},
 
-
     'label170': { text: '211', size: SIZE, color: GREEN, pathLabel: 'path183' },
     'label171': { text: '212', size: SIZE, color: GREEN, pathLabel: 'path176'  },
     'label172': { text: '213', size: SIZE, color: GREEN, pathLabel: 'path178'  },
@@ -292,7 +280,6 @@ export const LABELS_DATA = {
     'label178': { text: '220', size: SIZE, color: GREEN, pathLabel: 'path166'  },
     'label179': { text: '221', size: SIZE, color: GREEN, pathLabel: 'path169' },
     'label180': { text: '222', size: SIZE, color: GREEN, pathLabel: 'path172' },
-
 
     /** 3 **************************/
 
@@ -319,7 +306,6 @@ export const LABELS_DATA = {
     'label263': { text: '318', size: SIZE, color: GREEN, pathLabel: 'path203'},
     // 'label264': { text: '319', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
     // 'label265': { text: '320', size: SIZE, color: GREEN, pathLabel: 'path_l117'},
-
 }
 
 export const START_CLICKS_TO_PATH = [
@@ -356,11 +342,13 @@ export const BLUE_GROUP = [
     'floor01_item07',
     'floor01_item06',
     'floor01_item05',
+
     'floor02_item104',
     'floor02_item105',
     'floor02_item106',
     'floor02_item107',
     'floor02_item108',
+
     'floor03_item115',
     'floor03_item116',
     'floor03_item117',
@@ -380,7 +368,6 @@ export const GREEN_GROUP = [
     'floor01_item24',
     'floor01_item25',
     'floor01_item26',
-
 
     'floor02_item130',
     'floor02_item131',

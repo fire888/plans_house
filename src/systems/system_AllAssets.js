@@ -21,6 +21,7 @@ const createMaterials = () => {
             shininess: 10,
             transparent: true,
             opacity: .2,
+            depthWrite: false,
         }),
         'wall': new THREE.MeshPhongMaterial({
             color: 0x00ffff,
@@ -29,88 +30,37 @@ const createMaterials = () => {
             emissive: 0x000000,
             shininess: 10,
             transparent: true,
-            opacity: .2,
-            //side: THREE.DoubleSide,
+            opacity: .1,
+            depthWrite: false,
+            side: THREE.DoubleSide,
         }),
-        'stairsAndLift': new THREE.MeshPhongMaterial({
-            color: 0xffff99,
-            specular: 0x111111,
-            emissive: 0x000000,
-            shininess: 0,
-            // transparent: true,
-            // opacity: 0.80,
-        }),
-        // 'stairsAndLift': new THREE.MeshBasicMaterial({
-        //     color: 0xffff00,
-        //     //transparent: true,
-        //     //opacity: 0.80,
-        // }),
-        // 'lab': new THREE.MeshPhongMaterial({
-        //     color: 0x996622,
-        //     specular: 0x111111,
-        //     emissive: 0x000000,
-        //     shininess: 0,
-        //     transparent: true,
-        //     opacity: 0.80,
-        // }),
         'lab': new THREE.MeshBasicMaterial({
             color: 0x886600,
             specular: 0x111111,
             transparent: true,
             opacity: 0.5,
         }),
-        // 'labRed': new THREE.MeshPhongMaterial({
-        //     color: 0xFF5533,
-        //     specular: 0x111111,
-        //     emissive: 0x000000,
-        //     shininess: 0,
-        //     transparent: true,
-        //     opacity: 0.90,
-        // }),
-        // 'labBlue': new THREE.MeshPhongMaterial({
-        //     color: 0x223388,
-        //     specular: 0x111111,
-        //     emissive: 0x000000,
-        //     shininess: 0,
-        //     transparent: true,
-        //     opacity: 0.5,
-        // }),
         'labBlue': new THREE.MeshBasicMaterial({
             color: 0x223388,
             specular: 0x111111,
             transparent: true,
             opacity: .5,
+            depthWrite: false,
         }),
-        // 'labGreen': new THREE.MeshPhongMaterial({
-        //     color: 0x228822,
-        //     specular: 0x111111,
-        //     emissive: 0x000000,
-        //     shininess: 0,
-        //     transparent: true,
-        //     opacity: 0.90,
-        // }),
         'labGreen': new THREE.MeshBasicMaterial({
             color: 0x228822,
             specular: 0x111111,
             transparent: true,
             opacity: 0.50,
-        }),
-        'matRed': new THREE.MeshPhongMaterial({
-            color: 0xFF0000,
-            specular: 0x111111,
-            emissive: 0x000000,
-            shininess: 0,
-            transparent: true,
-            opacity: 0.90,
-            side: THREE.DoubleSide,
+            depthWrite: false,
         }),
         'labRed': new THREE.MeshBasicMaterial({
             color: 0x883322,
             specular: 0x111111,
             transparent: true,
             opacity: 0.50,
+            depthWrite: false,
         }),
-
         'man': new THREE.MeshPhongMaterial({
             color: 0x888800,
             specular: 0xffffff,
@@ -200,7 +150,7 @@ export const createSystemAllAssets = (root) => {
 
 
             if (key.includes('floor')) {
-                items[key].material = materials.floor
+                items[key].material = materials.wall
             }
             if (key.includes('wall')) {
                 items[key].material = materials.wall
@@ -210,8 +160,10 @@ export const createSystemAllAssets = (root) => {
                 key.includes('lift') ||
                 key.includes('cloackroom')
             ) {
-                items[key].material = materials.stairsAndLift
+                //items[key].material = materials.stairsAndLift
+                items[key].material = materials.wall
             }
+
 
 
 
@@ -250,7 +202,7 @@ export const createSystemAllAssets = (root) => {
                 items[key].material = materials.black
             }
             if (key.includes('item')) {
-                items[key].material = materials.lab
+                items[key].material = materials.wall
             }
             for (let i = 0; i < RED_GROUP.length; ++i) {
                 if (RED_GROUP[i] === key) {
@@ -273,7 +225,7 @@ export const createSystemAllAssets = (root) => {
                 key.includes('lift') ||
                 key.includes('cloackroom')
             ) {
-                // studio.addToScene2(items[key])
+                studio.addToScene2(items[key])
             } else {
                 studio.addToScene(items[key])
             }
