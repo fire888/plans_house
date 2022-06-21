@@ -224,9 +224,9 @@ export const CROSS_DATA = {
 
 
 export const LABELS_DATA = {
-    'label000': { text: 'ВХОД', size: SIZE2, color: GREEN2, colorFont: GREEN0, pathLabel: 'path_l000' },
-    'label027': { text: 'ВХОД 2', size: SIZE2, color: GREEN2, colorFont: GREEN0, pathLabel: 'path_l027'},
-    'label017': { text: 'гардероб', size: SIZE2, color: GREEN2, colorFont: GREEN0, pathLabel: 'path_g'},
+    'label000': { text: 'ВХОД', size: SIZE2, color: GREEN2, colorFont: GREEN0, pathLabel: 'path_l000', mesh: 'hidden_enter01' },
+    'label027': { text: 'ВХОД 2', size: SIZE2, color: GREEN2, colorFont: GREEN0, pathLabel: 'path_l027', mesh: 'hidden_enter002' },
+    'label017': { text: 'гардероб', size: SIZE2, color: GREEN2, colorFont: GREEN0, pathLabel: 'path_g', mesh: 'floor01_cloackroom00' },
     'label025': { text: 'лифт', size: SIZE2, color: GREEN2, colorFont: GREEN0, pathLabel: 'path_l025' },
     'label024': { text: 'лестница', size: SIZE2, color: GREEN2, colorFont: GREEN0, pathLabel: 'path_l024' },
 

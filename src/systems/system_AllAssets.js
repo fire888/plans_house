@@ -91,10 +91,10 @@ const createMaterials = () => {
         'black': new THREE.MeshBasicMaterial({
             color: 0x990000,
         }),
-        'wireframe': new THREE.MeshBasicMaterial({
-            color: 0xffffff,
-            wireframe: true,
-        }),
+        // 'wireframe': new THREE.MeshBasicMaterial({
+        //     color: 0xffffff,
+        //     wireframe: true,
+        // }),
         'lineMat': new THREE.LineBasicMaterial( {
             color: 0x00ffff,
             linewidth: 1,
@@ -107,19 +107,23 @@ const createMaterials = () => {
             color: 0x111111,
             linewidth: 1,
             linecap: 'round', //ignored by WebGLRenderer
-            linejoin:  'round' //ignored by WebGLRenderer
+            linejoin:  'round', //ignored by WebGLRenderer
         }),
         'lineMatBlack': new THREE.LineBasicMaterial( {
-            color: 0x2299ff,
+            color: 0x00ffff,
             linewidth: 1,
             linecap: 'round', //ignored by WebGLRenderer
-            linejoin:  'round' //ignored by WebGLRenderer
+            linejoin:  'round', //ignored by WebGLRenderer
+            transparent: true,
+            opacity: .5,
         }),
         'lineMatWhite': new THREE.LineBasicMaterial( {
-            color: 0x2299ff,
+            color: 0x00ffff,
             linewidth: 1,
             linecap: 'round', //ignored by WebGLRenderer
-            linejoin:  'round' //ignored by WebGLRenderer
+            linejoin:  'round', //ignored by WebGLRenderer
+            transparent: true,
+            opacity: .5,
         }),
     }
 }
@@ -223,9 +227,18 @@ export const createSystemAllAssets = (root) => {
             if (key.includes('black')) {
                 items[key].material = materials.black
             }
-            if (key.includes('item')) {
+            if (key.includes('item') || key.includes('hidden') || key === 'floor01_cloackroom00') {
                 items[key].material = materials.wall
                 labs.push(items[key])
+            }
+
+            if (key === 'floor01_cloackroom00') {
+                labsData[key] = {
+                    mesh: items[key],
+                    lightMat: materials.labRedLight,
+                    normal: materials.wall,
+                    current: materials.man,
+                }
             }
             for (let i = 0; i < RED_GROUP.length; ++i) {
                 if (RED_GROUP[i] === key) {
@@ -261,10 +274,20 @@ export const createSystemAllAssets = (root) => {
                 }
             }
 
+            if (key.includes('hidden')) {
+                labsData[key] = {
+                    mesh: items[key],
+                    lightMat: materials.labGreenLight,
+                    normal: materials.labGreen,
+                    current: materials.man,
+                }
+                continue;
+            }
+
             if (
                 key.includes('stairs') ||
-                key.includes('lift') ||
-                key.includes('cloackroom')
+                key.includes('lift') // ||
+                //key.includes('cloackroom')
             ) {
                 studio.addToScene2(items[key])
             } else {

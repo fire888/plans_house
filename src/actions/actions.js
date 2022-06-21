@@ -4,7 +4,7 @@ import { LABELS_DATA } from '../constants/itemsData'
 export const createActions = (root) => {
 
 
-    const changePath =(data) => {
+    const changePath = data => {
         root.system_arrows && root.system_arrows.drawPath(data)
         root.system_labels.setToBiggest(data.currentStart, data.currentEnd)
 
@@ -43,7 +43,10 @@ export const createActions = (root) => {
     let savedPrev = 'label000'
 
     root.projector.onClick(item => {
-        console.log(item.name)
+        console.log(item)
+        if (!item) {
+            return;
+        }
 
         let currentClick = null 
         for (let key in LABELS_DATA) {
