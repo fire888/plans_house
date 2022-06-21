@@ -44,21 +44,42 @@ const createMaterials = () => {
             color: 0x223388,
             specular: 0x111111,
             transparent: true,
-            opacity: .5,
+            opacity: .3,
+            depthWrite: false,
+        }),
+        'labBlueLight': new THREE.MeshBasicMaterial({
+            color: 0x223388,
+            specular: 0x111111,
+            transparent: true,
+            opacity: 1,
             depthWrite: false,
         }),
         'labGreen': new THREE.MeshBasicMaterial({
             color: 0x228822,
             specular: 0x111111,
             transparent: true,
-            opacity: 0.50,
+            opacity: 0.3,
+            depthWrite: false,
+        }),
+        'labGreenLight': new THREE.MeshBasicMaterial({
+            color: 0x228822,
+            specular: 0x111111,
+            transparent: true,
+            opacity: 1,
             depthWrite: false,
         }),
         'labRed': new THREE.MeshBasicMaterial({
             color: 0x883322,
             specular: 0x111111,
             transparent: true,
-            opacity: 0.50,
+            opacity: 0.3,
+            depthWrite: false,
+        }),
+        'labRedLight': new THREE.MeshBasicMaterial({
+            color: 0x883322,
+            specular: 0x111111,
+            transparent: true,
+            opacity: 1,
             depthWrite: false,
         }),
         'man': new THREE.MeshPhongMaterial({
@@ -119,6 +140,8 @@ export const createSystemAllAssets = (root) => {
         'floor03': [],
         'floor04': [],
     }
+    const labs = []
+    const labsData = {}
 
 
     const createLevel = (assets) => {
@@ -160,7 +183,6 @@ export const createSystemAllAssets = (root) => {
                 key.includes('lift') ||
                 key.includes('cloackroom')
             ) {
-                //items[key].material = materials.stairsAndLift
                 items[key].material = materials.wall
             }
 
@@ -203,19 +225,38 @@ export const createSystemAllAssets = (root) => {
             }
             if (key.includes('item')) {
                 items[key].material = materials.wall
+                labs.push(items[key])
             }
             for (let i = 0; i < RED_GROUP.length; ++i) {
                 if (RED_GROUP[i] === key) {
+                    labsData[key] = {
+                        mesh: items[key],
+                        lightMat: materials.labRedLight,
+                        normal: materials.labRed,
+                        current: materials.man,
+                    }
                     items[key].material = materials.labRed
                 }
             }
             for (let i = 0; i < BLUE_GROUP.length; ++i) {
                 if (BLUE_GROUP[i] === key) {
+                    labsData[key] = {
+                        mesh: items[key],
+                        lightMat: materials.labBlueLight,
+                        normal: materials.labBlue, 
+                        current: materials.man,
+                    }
                     items[key].material = materials.labBlue
                 }
             }
             for (let i = 0; i < GREEN_GROUP.length; ++i) {
                 if (GREEN_GROUP[i] === key) {
+                    labsData[key] = {
+                        mesh: items[key],
+                        lightMat: materials.labGreenLight,
+                        normal: materials.labGreen, 
+                        current: materials.man,
+                    }
                     items[key].material = materials.labGreen
                 }
             }
@@ -232,6 +273,9 @@ export const createSystemAllAssets = (root) => {
         }
     }
 
+    let currentItems = []
+
+
     return {
         createLevel,
         getLabels: () => {
@@ -247,6 +291,41 @@ export const createSystemAllAssets = (root) => {
             for (let i = 0; i < floorsGroups[keyFloor].length; ++i) {
                 floorsGroups[keyFloor][i].visible = is
             }
-        }
+        },
+        getLabs: () => labs,
+        lightObject: object => {
+            if (labsData[object.name]) {
+                for (let i = 0; i < currentItems.length; ++i) {
+                    if (currentItems[i].mesh.name === object.name) {
+                        return;
+                    }
+                }
+                object.material = labsData[object.name].lightMat
+            }
+        },
+        darkObject: object => {
+            if (labsData[object.name]) {
+                for (let i = 0; i < currentItems.length; ++i) {
+                    if (currentItems[i].mesh.name === object.name) {
+                        return;
+                    }
+                }
+                object.material = labsData[object.name].normal
+            }
+        },
+        setCurrent: (key1, key2) => {
+            for (let i = 0; i < currentItems.length; ++i) {
+                currentItems[i].mesh.material = currentItems[i].normal
+            }
+            currentItems = []
+            if (key1) {
+                labsData[key1].mesh.material = labsData[key1].current 
+                currentItems.push(labsData[key1]) 
+            }
+            if (key2) {
+                labsData[key2].mesh.material = labsData[key2].current 
+                currentItems.push(labsData[key2]) 
+            }
+        },
     }
 }

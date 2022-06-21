@@ -1,43 +1,66 @@
 import * as THREE from 'three'
 
 
-export function createProjector(cam, model) {
+export function createProjector() {
 
     const raycaster = new THREE.Raycaster()
     const mouse = new THREE.Vector2()
-    const camera = cam 
 
-    const targetList = [model]
+    let targetList = []
+    let camera = null
+    let onEventIntersept = () => {}
+    let onClick = () => {}
+    let oldInterseptObject = null
 
-    const cone = new THREE.Group()
-    const coneMesh = new THREE.Mesh(
-        new THREE.ConeBufferGeometry(10, 30, 16, 1),
-        new THREE.MeshBasicMaterial({ color: 0xff0000 })
-    )
-    coneMesh.rotation.x = Math.PI / 2
-    cone.add(coneMesh)
+
 
     const onMouseMove = ( event ) => {
+        if (!camera) {
+            return;
+        }
+
         mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1
         mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1
 
         raycaster.setFromCamera(mouse, camera)
         const intersects = raycaster.intersectObjects(targetList, true)
-
+    
         if (!intersects[0]) {
-            return
+            document.body.style.cursor = 'auto'
+            if (oldInterseptObject) {
+                onEventIntersept(null, oldInterseptObject)
+                oldInterseptObject = null
+            }
         }
 
-        cone.position.copy(intersects[0].point)
+        if (intersects[0]) { 
+            document.body.style.cursor = 'pointer'
+            const newObj = intersects[0].object 
 
-        const n = intersects[ 0 ].face.normal.clone();
-        n.transformDirection(intersects[0].object.matrixWorld);
-        n.multiplyScalar( 10 );
-        n.add( intersects[ 0 ].point );
-        cone.lookAt( n );
+            if (!oldInterseptObject) {
+                oldInterseptObject = newObj
+                onEventIntersept(newObj, null)
+            } else {
+                if (newObj !== oldInterseptObject.name) {
+                    onEventIntersept(newObj, oldInterseptObject)
+                    oldInterseptObject = newObj
+                }
+            }
+        }
     }
 
-    window.addEventListener( 'mousemove', onMouseMove, false )
 
-    return cone
+    const onMouseClick = () => {
+        onClick(oldInterseptObject)
+    }
+
+    window.addEventListener('mousemove', onMouseMove, false)
+    window.addEventListener('click', onMouseClick, false)
+
+    return {
+        on: on => onEventIntersept = on,
+        onClick: on => onClick = on,
+        setTargets: targets => targetList = targets,
+        setCamera: cam => camera = cam,
+    }
 }

@@ -50,17 +50,16 @@ const createSprite = (key, labelsLinesModel) => {
     ]
 
     sprite.position.fromArray(pos)
-    sprite.scale.x = size[0] / 140
-    sprite.scale.y = size[1] / 140
+    sprite.scale.x = size[0] / 200
+    sprite.scale.y = size[1] / 200
     return sprite
 }
 
 
 export const createSystemLabels = (root, labelsLinesModels) => {
     const sprites = {}
-
-    let oldSpStart = null
-    let oldSpEnd = null
+    let bigScaled = []
+    
 
     for (let key in labelsLinesModels) {
         const sprite = createSprite(key, labelsLinesModels[key])
@@ -70,32 +69,29 @@ export const createSystemLabels = (root, labelsLinesModels) => {
         }
     }
 
-    root.emitter.subscribe('changePath', ({ currentStart, currentEnd }) => {
-        if (currentStart) {
-            if (oldSpStart) {
-                const { s, scale } = sprites[oldSpStart] 
+    return {
+        setToBiggest: (key1, key2) => {
+            for (let i = 0; i < bigScaled.length; ++i) {
+                const { s, scale } = bigScaled[i]
                 s.scale.x = scale[0]
                 s.scale.y = scale[1]
             }
+            bigScaled = []
 
-            const { s, scale } = sprites[currentStart]
-            s.scale.x = scale[0] * 1.3
-            s.scale.y = scale[1] * 1.3
-            oldSpStart = currentStart
-        }
-        if (currentEnd) {
-            if (oldSpEnd) {
-                const { s, scale } = sprites[oldSpEnd] 
-                s.scale.x = scale[0]
-                s.scale.y = scale[1]
+
+            if (key1) {
+                const { s, scale } = sprites[key1]
+                s.scale.x = scale[0] * 3
+                s.scale.y = scale[1] * 3
+                bigScaled.push(sprites[key1])
             }
+            if (key2) {
+                const { s, scale } = sprites[key2]
+                s.scale.x = scale[0] * 3
+                s.scale.y = scale[1] * 3
+                bigScaled.push(sprites[key2])
+            }
+        }, 
 
-            const { s, scale } = sprites[currentEnd]
-            s.scale.x = scale[0] * 1.3
-            s.scale.y = scale[1] * 1.3
-            oldSpEnd = currentEnd
-        }
-    })
-
-    return {}
+    }
 }

@@ -7,7 +7,7 @@ import { createLoadManager } from './helpers/LoadManager'
 //import { createPlayer } from './entities/Player'
 import { createCamera } from './entities/Camera'
 import { startFrameUpater } from './utils/createFrameUpater'
-//import { createProjector } from './helpers/Projector'
+import { createProjector } from './helpers/Projector'
 import { START_CLICKS_TO_PATH} from './constants/itemsData'
 import { ASSETS_TO_LOAD } from './constants/constants_assetsToLoad'
 import { createSystemAllAssets } from './systems/system_AllAssets'
@@ -27,7 +27,6 @@ const root = {}
 
 
 const initApp = () => {
-  root.actions = createActions(root)
   root.emitter = createEventEmitter()
   root.frameUpdater = startFrameUpater(root.emitter)
 
@@ -38,11 +37,17 @@ const initApp = () => {
   root.camMovies = createCamera(root)
   root.studio.setCamera(root.camMovies.camera)
 
+  root.projector = createProjector()
+  root.projector.setCamera(root.camMovies.camera)
+
   root.loadManager = new createLoadManager()
+  root.actions = createActions(root)
   root.loadManager.startLoad(ASSETS_TO_LOAD).then(assets => {
 
     root.system_assets = createSystemAllAssets(root)
     root.system_assets.createLevel(assets)
+
+    root.projector.setTargets(root.system_assets.getLabs())
 
     const labelsData = root.system_assets.getLabels()
     root.system_labels = createSystemLabels(root, labelsData, assets)
@@ -54,12 +59,10 @@ const initApp = () => {
 
     hideStartScreen()
 
-    const buttons = createButtons(root)
-    buttons.click(START_CLICKS_TO_PATH[0])
-    buttons.click(START_CLICKS_TO_PATH[1])
-    const floorsButtons = createFloorsButtons(root)
-    //const cone = createProjector(player.getCamera(), assets['scene'])
-    //studio.addToScene(cone)
+    root.buttons = createButtons(root)
+    root.buttons.click(START_CLICKS_TO_PATH[0])
+    root.buttons.click(START_CLICKS_TO_PATH[1])
+    root.floorsButtons = createFloorsButtons(root) 
   })
 }
 
