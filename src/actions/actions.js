@@ -1,10 +1,14 @@
-import { LABELS_DATA } from '../constants/itemsData'
+import { LABELS_DATA, START_CLICKS_TO_PATH } from '../constants/itemsData'
 
 
-export const createActions = (root) => {
+export const createActions = root => {
+
+    let currentStart = START_CLICKS_TO_PATH[0].label
+    let currentEnd = START_CLICKS_TO_PATH[1].label
 
 
     const changePath = data => {
+        console.log(data)
         root.system_arrows && root.system_arrows.drawPath(data)
         root.system_labels.setToBiggest(data.currentStart, data.currentEnd)
 
@@ -38,38 +42,44 @@ export const createActions = (root) => {
     })
 
 
-
-    let isClickedStart = true
-    let savedPrev = 'label000'
-
-    root.projector.onClick(item => {
+    async function clickOnScene (item, e) {
         console.log(item)
         if (!item) {
             return;
         }
-
-        let currentClick = null 
+        
+        let currentLabel = null 
         for (let key in LABELS_DATA) {
             if (LABELS_DATA[key].mesh && LABELS_DATA[key].mesh === item.name) {
-                currentClick =  key
+                currentLabel =  key
             }
         }
 
-        if (!currentClick) {
+        if (!currentLabel) {
             return;
         }
 
-        if (isClickedStart) {
-            changePath({ currentStart: savedPrev, currentEnd: currentClick })
+        const keyStartOrEnd = await root.choiseStartEnd.waitChoise(e.pageX, e.pageY, currentLabel)
+        console.log(keyStartOrEnd)
+
+        if (!keyStartOrEnd) {
+            return;
         }
 
-        if (!isClickedStart) {
-            changePath({ currentStart: currentClick, currentEnd: savedPrev })
+        console.log(currentLabel)
+
+        if (keyStartOrEnd === 'start') {
+            currentStart = currentLabel
+        }
+        if (keyStartOrEnd === 'end') {
+            currentEnd = currentLabel
         }
 
-        savedPrev = currentClick
-        isClickedStart = !isClickedStart 
-    })
+        changePath({ currentStart, currentEnd })
+    }
+
+
+    root.projector.onClick(clickOnScene)
 
     return {
         toggleVisibleFloor: (keyFloor, is) => {

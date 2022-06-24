@@ -50,8 +50,8 @@ export function createProjector() {
     }
 
 
-    const onMouseClick = () => {
-        onClick(oldInterseptObject)
+    const onMouseClick = e => {
+        onClick(oldInterseptObject, e)
     }
 
     window.addEventListener('mousemove', onMouseMove, false)
