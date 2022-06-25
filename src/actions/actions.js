@@ -101,6 +101,7 @@ export const createActions = root => {
         },
         changePath,
         startFly: isStopFly => {
+            root.choiseStartEnd.toggleView(false)
             root.buttons.disable()
             isCanChangePath = false
 

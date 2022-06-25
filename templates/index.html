@@ -21,7 +21,8 @@
       color: #c6c9a7;;
       position: absolute;
       z-index: 100;
-      background: linear-gradient(to top, #1e2c19 60%, #c6c9a7 60%);
+      /*background: linear-gradient(to top, #1e2c19 60%, #c6c9a7 60%); */
+      background: linear-gradient(to top, #001115 60%, #001218 60%);
       width: 100vw;
       height: 100vh;
       display: flex;
@@ -37,11 +38,13 @@
       min-height: 60px;
     }
     .progress-wrapper {
+      max-width: 50vw;
+      transform: translate(50%, 0);
       margin-top: 10px; 
       min-height: 5px;
-      width: 100%;
       overflow: hidden;
-      border-radius: 5px; 
+      border-radius: 5px;
+      border: #2e7106 1px solid;
     }
     .progress {
       width: 200%;
@@ -202,7 +205,7 @@
       <div class = "load-container">
         <button class="start" style="display: none;">Start</button>
         <div class="load-wrapper">
-          <p><em>loading...</em></p>
+<!--          <p>loading</p>-->
           <div class="progress-wrapper">
             <div class="progress"></div> 
           </div>

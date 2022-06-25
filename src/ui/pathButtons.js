@@ -65,7 +65,7 @@ export const createButtons = root => {
         root.actions.changePath({ currentStart, currentEnd })
     }
     clearButton.addEventListener('click', () => {
-        if (!isDisable) {
+        if (isDisable) {
             return;
         }
 

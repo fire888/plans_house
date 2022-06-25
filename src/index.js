@@ -45,6 +45,7 @@ const initApp = () => {
   root.loadManager = new createLoadManager()
   root.actions = createActions(root)
   root.loadManager.startLoad(ASSETS_TO_LOAD).then(assets => {
+    //return;
 
     root.system_assets = createSystemAllAssets(root)
     root.system_assets.createLevel(assets)

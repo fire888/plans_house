@@ -54,6 +54,11 @@ export const createChoiseStartEnd = root => {
             return new Promise(res => {
                 resolve = res
             })
+        },
+        toggleView: (is) => {
+            is
+                ? wr.style.display = 'flex'
+                : wr.style.display = 'none'
         }
     }
 } 

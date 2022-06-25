@@ -13,9 +13,9 @@ const loaderTimeOut = () => {
     if (offsetLoader == 0 ) {
       offsetLoader = -100
     }
-    loader.style.marginLeft = offsetLoader + '%'
+    loader.style.marginLeft = offsetLoader + 'px'
     loaderTimeOut() 
-  }, 100)
+  }, 14)
 }
 
 loaderTimeOut()
