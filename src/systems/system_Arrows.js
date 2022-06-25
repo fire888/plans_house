@@ -53,10 +53,20 @@ export const createSystemArrows = (root, data) => {
                 nodesData[keyGraph].pos.distanceToSquared(nodesData[CROSS_DATA[keyGraph][i]].pos)
         }
         route.addNode(keyGraph, cross)
-    } 
+    }
+
+    let arrPointsSaved = null
 
     return {
         drawPath: ({ currentStart, currentEnd }) => {
+            if (!currentStart && !currentEnd) {
+                root.studio.removeFromScene3(mesh)
+                mesh.geometry.dispose()
+                mesh.material.dispose()
+                mesh = null
+                return;
+            }
+
             if (!currentStart || !currentEnd) {
                 return;
             }
@@ -96,13 +106,13 @@ export const createSystemArrows = (root, data) => {
             /** create new arrow */
             const keysPath = route.path(nodeStartKey, nodeEndKey)
             const coords = getCoords(keysPath, nodesData)
-            mesh = createMesh(coords)
-            //mesh.renderOrder = 999
-            //mesh.renderOrder = zindex || 999;
-           // mesh.material.depthTest = false;
-            //mesh.material.depthWrite = false;
-            //mesh.onBeforeRender = function (renderer) { renderer.clearDepth(); };
+            const arrowMesh = createMesh(coords)
+            mesh = arrowMesh.mesh
+            arrPointsSaved = arrowMesh.arrPoints
             root.studio.addToScene3(mesh)
+        },
+        getCurrentPathPoints: () => {
+            return arrPointsSaved
         }
     }
 }

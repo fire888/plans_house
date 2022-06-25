@@ -149,5 +149,5 @@ export const createMesh = pointsArr => {
             wireframe: false 
         })
     )
-    return mesh
+    return { mesh, arrPoints }
 }

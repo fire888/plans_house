@@ -4,7 +4,7 @@ import { FLOORS } from '../constants/floors.js'
 
 const createButton = (keyLabel, onClick) => {
     const butt = document.createElement('button')
-    butt.innerText = 'floor' + keyLabel
+    butt.innerText = keyLabel
     butt.addEventListener('click', () => onClick(keyLabel))
     return butt
 }

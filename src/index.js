@@ -16,6 +16,7 @@ import { createSystemArrows } from './systems/system_Arrows'
 import { createButtons } from './ui/pathButtons'
 import { createFloorsButtons } from './ui/floorsButtons'
 import { createChoiseStartEnd } from './ui/floatChoiseStartEnd'
+import { createFlyButton } from './ui/flyButton'
 // import { createMapBox } from './systems/system_MapBox'
 import { createActions } from './actions/actions'
 
@@ -61,8 +62,9 @@ const initApp = () => {
     root.buttons = createButtons(root)
     root.buttons.click(START_CLICKS_TO_PATH[0])
     root.buttons.click(START_CLICKS_TO_PATH[1])
-    root.floorsButtons = createFloorsButtons(root)
+    //root.floorsButtons = createFloorsButtons(root)
     root.choiseStartEnd = createChoiseStartEnd(root)
+    root.flyButton = createFlyButton(root)
 
     hideStartScreen()
   })
