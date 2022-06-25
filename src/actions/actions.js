@@ -7,7 +7,22 @@ export const createActions = root => {
     let currentEnd = START_CLICKS_TO_PATH[1].label
 
 
+    let isCanChangePath = true
+
     const changePath = data => {
+        if (!isCanChangePath) {
+            return;
+        }
+
+        if (root.flyButton) {
+            if (!data.currentStart && !data.currentEnd) {
+                root.flyButton.toggleView(false)
+            } else {
+                root.flyButton.toggleView(true)
+            }
+        }
+
+
         root.system_arrows && root.system_arrows.drawPath(data)
         root.system_labels.setToBiggest(data.currentStart, data.currentEnd)
 
@@ -42,6 +57,10 @@ export const createActions = root => {
 
 
     async function clickOnScene (item, e) {
+        if (!isCanChangePath) {
+            return;
+        }
+
         if (!item) {
             return;
         }
@@ -75,18 +94,26 @@ export const createActions = root => {
     root.projector.onClick(clickOnScene)
 
 
-
-
-
     return {
         toggleVisibleFloor: (keyFloor, is) => {
             root.system_assets &&
                 root.system_assets.toggleVisibleFloor(keyFloor, is)
         },
         changePath,
-        startFly: () => {
-            const points = root.system_arrows.getCurrentPathPoints()
-            root.camMovies.flyByPath(points)
+        startFly: isStopFly => {
+            root.buttons.disable()
+            isCanChangePath = false
+
+
+            const flyData = isStopFly
+                ? false
+                : root.system_arrows.getCurrentPathPoints()
+
+            root.camMovies.flyByPath(flyData, () => {
+                root.buttons.enable()
+                isCanChangePath = true
+                root.flyButton.reset()
+            })
         },
     }
 } 

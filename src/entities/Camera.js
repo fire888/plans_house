@@ -26,7 +26,6 @@ export const createCamera = (root) => {
     }
 
     let tween = null
-
     emitter.subscribe('frameUpdate', () => {
         if (tween) {
             tween()
@@ -35,54 +34,85 @@ export const createCamera = (root) => {
     })
 
 
+    /** movie functions *****************************/
+    const rotateTo = (p, callback) => {
+        const currentQ = new THREE.Quaternion();
+        currentQ.copy(camera.quaternion)
+        camera.lookAt(...p)
+        const targetQ = new THREE.Quaternion()
+        targetQ.copy(camera.quaternion)
+        camera.quaternion.copy(currentQ)
+
+        if (targetQ.equals(currentQ)) {
+            return void callback()
+        }
+
+        tween = createLinear(500, val => {
+            camera.quaternion.slerpQuaternions(currentQ, targetQ, val)
+            if (val === 1) {
+                tween = null
+                callback()
+            }
+        })
+    }
+
+    const moveTo = (p, callback) => {
+        const vCamStart = new THREE.Vector3().copy(camera.position)
+        const vCamEnd = new THREE.Vector3().fromArray(p)
+
+        tween = createLinear(500, val => {
+            camera.position.lerpVectors(vCamStart, vCamEnd, val)
+            if (val === 1) {
+                tween = null
+                callback()
+            }
+        })
+    }
+
+    const flyToStart = (vLookAt, callback) => {
+        const vCamStart = new THREE.Vector3().copy(camera.position)
+        const vCamEnd = savedCamPosition
+
+        tween = createLinear(500, val => {
+            camera.position.lerpVectors(vCamStart, vCamEnd, val)
+            camera.lookAt(vLookAt)
+            if (val === 1) {
+                controls.enabled = true
+                tween = null
+                callback()
+            }
+        })
+    }
 
 
-    const flyByPath = (points, callback) => {
+
+    const savedCamPosition = new THREE.Vector3()
+
+
+    const flyByPath = (points, callback = () => {}) => {
+        points = JSON.parse(JSON.stringify(points))
+
+        if (points) {
+            savedCamPosition.copy(camera.position)
+        }
+
+        if (!points) {
+            tween = null
+            flyToStart(new THREE.Vector3(), callback)
+            return;
+        }
+
         for (let i = 0; i < points.length; ++i) {
             points[i][1] += 1.5
         }
 
+
         controls.enabled = false
-
-        const rotateTo = (p, callback) => {
-            const currentQ = new THREE.Quaternion();
-            currentQ.copy(camera.quaternion)
-            camera.lookAt(...p)
-            const targetQ = new THREE.Quaternion()
-            targetQ.copy(camera.quaternion)
-            camera.quaternion.copy(currentQ)
-
-            if (targetQ.equals(currentQ)) {
-                return void callback()
-            }
-
-            tween = createLinear(500, val => {
-                 camera.quaternion.slerpQuaternions(currentQ, targetQ, val)
-                 if (val === 1) {
-                     tween = null
-                     callback()
-                 }
-            })
-        }
-
-        const moveTo = (p, callback) => {
-            const vCamStart = new THREE.Vector3().copy(camera.position)
-            const vCamEnd = new THREE.Vector3().fromArray(p)
-
-            tween = createLinear(500, val => {
-                camera.position.lerpVectors(vCamStart, vCamEnd, val)
-                if (val === 1) {
-                    tween = null
-                    callback()
-                }
-            })
-        }
 
         const iterate = ind => {
             if (!points[ind + 1]) {
                 controls.target.set(...points[ind])
-                controls.enabled = true
-                callback()
+                flyToStart(new THREE.Vector3(...points[points.length - 1]), callback)
                 return;
             }
 

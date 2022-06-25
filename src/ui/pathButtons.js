@@ -34,6 +34,7 @@ export const createButtons = root => {
     buttonsCont.appendChild(endCont)
 
 
+    let isDisable = false
 
 
     let currentStart = null
@@ -41,6 +42,10 @@ export const createButtons = root => {
 
 
     const onClick = (dir, keyLabel) => {
+        if (isDisable) {
+            return;
+        }
+
         if (dir === 'start') {
             for (let k in startButtons) {
                 startButtons[k].classList.remove('red')
@@ -60,6 +65,10 @@ export const createButtons = root => {
         root.actions.changePath({ currentStart, currentEnd })
     }
     clearButton.addEventListener('click', () => {
+        if (!isDisable) {
+            return;
+        }
+
         for (let k in startButtons) {
             startButtons[k].classList.remove('red')
         }
@@ -95,6 +104,12 @@ export const createButtons = root => {
         click: data => {
             onClick(data.dir, data.label)
         },
+        disable: () => {
+            isDisable = true
+        },
+        enable: () => {
+            isDisable = false
+        }
     }
 }
 
