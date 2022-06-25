@@ -11,6 +11,21 @@ export const createChoiseStartEnd = root => {
     wr.style.display = 'none'
     document.body.append(wr)
 
+    let isPointerDown = false
+    document.addEventListener('pointerdown', () => {
+        isPointerDown = true
+    })
+    document.addEventListener('pointerup', () => {
+        isPointerDown = false
+    })
+    document.addEventListener('pointermove', () => {
+        if (!isPointerDown) {
+           return;
+        }
+        wr.style.display = 'none'
+    })
+
+
     let resolve = null
 
     for (let key in BUTTONS) {
@@ -18,6 +33,7 @@ export const createChoiseStartEnd = root => {
         b.innerText = key
         wr.appendChild(b)
         b.addEventListener('click', e => {
+            e.preventDefault()
             e.stopPropagation()
             if (!resolve) {
                 return;

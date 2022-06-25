@@ -11,22 +11,29 @@ const createButton = (dir, keyLabel, text, onClick) => {
 
 
 
-export const createButtons = (root) => {
-    const { emitter } = root 
-
+export const createButtons = root => {
     const container = document.createElement('div')
-    container.classList.add('path-cont')
+    container.classList.add('path-cont-area')
     document.body.appendChild(container)
+
+    const clearButton = document.createElement('button')
+    clearButton.classList.add('clear-button')
+    clearButton.innerText = 'clear path'
+    container.appendChild(clearButton)
+
+    const buttonsCont = document.createElement('div')
+    buttonsCont.classList.add('path-cont')
+    container.appendChild(buttonsCont)
 
     const startCont = document.createElement('div')
     startCont.classList.add('cont-column')
-    startCont.innerHTML = `<div>старт</div>`
-    container.appendChild(startCont)
+    buttonsCont.appendChild(startCont)
 
     const endCont = document.createElement('div')
     endCont.classList.add('cont-column')
-    endCont.innerHTML = `<div>финиш</div>`
-    container.appendChild(endCont)
+    buttonsCont.appendChild(endCont)
+
+
 
 
     let currentStart = null
@@ -52,6 +59,17 @@ export const createButtons = (root) => {
 
         root.actions.changePath({ currentStart, currentEnd })
     }
+    clearButton.addEventListener('click', () => {
+        for (let k in startButtons) {
+            startButtons[k].classList.remove('red')
+        }
+
+        for (let k in endButtons) {
+            endButtons[k].classList.remove('red')
+        }
+
+        root.actions.changePath({ currentStart: null, currentEnd: null })
+    })
 
 
     const startButtons = {}

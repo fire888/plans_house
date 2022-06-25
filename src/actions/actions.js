@@ -75,7 +75,8 @@ export const createActions = root => {
             currentEnd = currentLabel
         }
 
-        changePath({ currentStart, currentEnd })
+        root.buttons.click({ dir: keyStartOrEnd, label: currentLabel})
+        //changePath({ currentStart, currentEnd })
     }
 
 

@@ -84,15 +84,25 @@
       font-size: 20px;
       border: 1px solid #000000;
     }
-    .path-cont {
+    .path-cont-area {
       position: absolute;
       z-index: 100;
       right: 0;
       top: 0;
       display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+      background-color: #264744;
+      overflow: hidden;
+    }
+    .path-cont {
+      display: flex;
       flex-direction: row;
       max-height: 100vh;
-      overflow: auto;
+      overflow-y: auto;
+      padding-right: 5px;
+      padding-left: 5px;
+      background-color: #264744;
     }
     .path-cont button {
       font-size: 10px;
@@ -101,10 +111,12 @@
     .cont-column {
       display: flex;
       flex-direction: column;
+      margin-bottom: 30px;
     }
     .red {
-      background-color: red;
-      color: white;
+      background-color: #c2c024;
+      color: #042f19;
+      font-weight: bold;
     }
     #mapbox-wrapper {
       position: absolute;
@@ -131,14 +143,46 @@
       left: 200px;
       top: 100px;
       color:rgba(199, 12, 12, 0.767); 
-      min-width: 200px;
-      background-color: #1e2c19;
-      border: #c6c9a7 1px solid;
+      min-width: 100px;
+      background-color: #192c2a;
+      border: #234443 1px solid;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    button {
+      color: #a3ffb2;
+      background-color: #264744;
+      border: 1px solid #3e726f;
+      border-bottom: 1px solid #1a2536;
+      border-radius: 3px;
+      padding: 5px 3px;
+      min-width: 60px;
+      cursor: pointer;
+    }
+
+    /** SCROLL BAR *********************/
+
+    div::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px #CA14291F;
+      border-radius: 10px;
+      background-color: #CA14291F;
+    }
+
+    div::-webkit-scrollbar {
+      width: 7px;
+      background-color: rgba(20, 41, 31, 0.795);
+    }
+
+    div::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px #4be8d6;
+      background-color: #34c68e;
     }
   </style>
 </head>
 <body>
-  <div class="app-title">этаж 1</div>
   <div class='start-screen'>
 
       <div class = "load-container">
