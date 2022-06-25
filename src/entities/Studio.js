@@ -41,7 +41,7 @@ export function createStudio (emitterLink) {
     canvas: document.getElementById( 'webgl-canvas' ),
     antialias: true
   })
-  renderer.setClearColor( 0x696c6d)
+  renderer.setClearColor(0x696c6d)
   renderer.autoClear = false
   renderer.autoClearColor = false
   renderer.autoClearStencil = false
@@ -101,10 +101,9 @@ export function createStudio (emitterLink) {
 
 
   const resize = () => {
-    const size = renderer.domElement.parentNode.getBoundingClientRect();
-    renderer.setSize( size.width, size.height )
+    renderer.setSize(window.innerWidth, window.innerHeight)
     if (camera) {
-      camera.aspect = size.width/size.height
+      camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
     }
   }

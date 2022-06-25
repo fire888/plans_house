@@ -5,7 +5,11 @@ import { LABELS_DATA } from '../constants/itemsData'
 const createButton = (dir, keyLabel, text, onClick) => {
     const butt = document.createElement('button')
     butt.innerText = text
-    butt.addEventListener('click', () => onClick(dir, keyLabel))
+    butt.addEventListener('click', e => {
+        e.preventDefault()
+        e.stopPropagation()
+        onClick(dir, keyLabel)
+    })
     return butt
 }
 
@@ -15,6 +19,10 @@ export const createButtons = root => {
     const container = document.createElement('div')
     container.classList.add('path-cont-area')
     document.body.appendChild(container)
+
+    const hidePanelButton = document.createElement('button')
+    hidePanelButton.innerText = 'X'
+    container.appendChild(hidePanelButton)
 
     const clearButton = document.createElement('button')
     clearButton.classList.add('clear-button')
@@ -98,6 +106,19 @@ export const createButtons = root => {
         endCont.appendChild(b)
         endButtons[key] = b
     }
+
+
+    let isHidden = false
+    hidePanelButton.addEventListener('click', () => {
+        isHidden = !isHidden
+        buttonsCont.style.display = isHidden
+            ? 'none'
+            : 'flex'
+        hidePanelButton.innerText = isHidden
+            ? 'V'
+            : 'X'
+
+    })
 
 
     return {
